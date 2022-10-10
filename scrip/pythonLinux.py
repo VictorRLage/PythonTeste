@@ -3,7 +3,7 @@ import subprocess
 # Bloco verifcar bibliotecas instaladas
 verificacao_psutil_byte = subprocess.check_output('''pip list | grep 'psutil' | uniq''', shell=True)
 verificacao_psutil_str = verificacao_psutil_byte.decode('UTF-8')
-verificacao_mysql_connector_byte = subprocess.check_output('''pip list | grep 'mysql-connector' | uniq''', shell=True)
+verificacao_mysql_connector_byte = subprocess.check_output('''pip list | grep 'mysql-connector-python' | uniq''', shell=True)
 verificacao_mysql_connector_str = verificacao_mysql_connector_byte.decode('UTF-8')
 verificacao_numpy_byte = subprocess.check_output('''pip list | grep 'numpy' | uniq''', shell=True)
 verificacao_numpy_str = verificacao_numpy_byte.decode('UTF-8')
@@ -270,7 +270,7 @@ def InserindoLeitura():
 
 
 
-Conexao('root','#Gf15533155708','localhost','Monitoll')
+Conexao('root','urubu100','localhost','Monitoll')
 VerificarDadosMaquina(strip2_RamAtual)
 
 

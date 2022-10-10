@@ -32,7 +32,7 @@ SO VARCHAR(45),
 Maquina VARCHAR(45),
 Processador VARCHAR(45),
 Disco VARCHAR(45),
-VelocidadeRam INT,
+VelocidadeRam VARCHAR(10),
 fkEmpresa Int,
 FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
@@ -102,5 +102,8 @@ select * from Torre;
 select * from Torre_Componente;
 select * from Leitura;
 -- UPDATE Torre  SET SerialID = 'WERWTDS2' WHERE idTorre = 101;
+
+CREATE USER 'tecnico'@'localhost' IDENTIFIED BY 'urubu100';
+GRANT ALL ON Monitoll.* TO 'tecnico'@'localhost';
 
 

@@ -234,5 +234,5 @@ def InserindoLeitura():
 
 
 
-Conexao('root2','urubu100','localhost','Monitoll')
+Conexao('tecnico','urubu100','localhost','Monitoll')
 VerificarDadosMaquina(strip2_RamAtual)

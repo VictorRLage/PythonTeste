@@ -64,76 +64,6 @@ def Conexao(user, senha, host, database):
             linha = cursor.fetchone()
             print("Conectado ao banco de dados:", linha)
 
-            
-
-
-def VerificarDadosMaquina(SerialID):
-
-
-    query = ("SELECT `idTorre` FROM Torre "
-                    "WHERE SerialID = %s;")
-                    
-    try:
-        # Executando comando SQL
-        cursor.execute(query, (SerialID,))
-        print("Encontrou a torre")
-        global idTorre
-        idTorre = cursor.fetchone()
-
-
-    except mysql.connector.Error as err:
-        print("Não encontrou a torre")
-        print("Something went wrong: {}".format(err))
-
-
-    query = ("SELECT `SerialID` FROM Torre "
-                    "WHERE idTorre = %s;")
-                    
-    try:
-        # Executando comando SQL
-        cursor.execute(query, (idTorre,))
-        print("Verificando dados da torre...")
-        SerialID = cursor.fetchone()
-
-
-    except mysql.connector.Error as err:
-        print("Não encontrou a torre")
-        print("Something went wrong: {}".format(err))
-    
-    if SerialID is not None:
-        print("A torre possui dados cadastrados")
-        print("Cadastrando leituras...")
-        InserindoLeitura()
-    else:
-        print("A torre não possui dados")
-        InserirDadosMaquina(strip_SerialIdAtual, strip3_OsAtual, strip3_MaquinaAtual, strip2_ProcessadorAtual, strip2_DiscoAtual, strip2_RamAtual)
-
-
-        
-
-    
-
-
-def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
-
-    sql = ("UPDATE Torre  SET SerialID = %s,  SO = %s, Maquina = %s, Processador = %s, Disco = %s, VelocidadeRam = %s,  fkEmpresa = %s WHERE idTorre = 101")
-    values = (SerialID, OS, Maquina, Processador, Disco, RamSpeed, 1)
-
-    try:
-    # Executando comando SQL
-        cursor.execute(sql, values)
-
-        # Commit de mudanças no banco de dados
-        cnx.commit()
-
-        print("Inserindo dados...")
-
-    except mysql.connector.Error as err:
-        cnx.rollback()
-        print("Something went wrong: {}".format(err))
-
-
-
 
 
 def teste():
@@ -231,8 +161,72 @@ def InserindoLeitura():
                 print(strNome + " = " + strCodigo)
                 teste()
 
+def VerificarDadosMaquina(SerialID):
+
+
+    query = ("SELECT `idTorre` FROM Torre "
+                    "WHERE SerialID = %s;")
+                    
+    try:
+        # Executando comando SQL
+        cursor.execute(query, (SerialID,))
+        print("Encontrou a torre")
+        global idTorre
+        idTorre = cursor.fetchone()
+
+
+    except mysql.connector.Error as err:
+        print("Não encontrou a torre")
+        print("Something went wrong: {}".format(err))
+
+
+    query = ("SELECT `SerialID` FROM Torre "
+                    "WHERE idTorre = %s;")
+                    
+    try:
+        # Executando comando SQL
+        cursor.execute(query, (idTorre,))
+        print("Verificando dados da torre...")
+        SerialID = cursor.fetchone()
+
+
+    except mysql.connector.Error as err:
+        print("Não encontrou a torre")
+        print("Something went wrong: {}".format(err))
+    
+    if SerialID is not None:
+        print("A torre possui dados cadastrados")
+        print("Cadastrando leituras...")
+        InserindoLeitura()
+    else:
+        print("A torre não possui dados")
+        InserirDadosMaquina(strip_SerialIdAtual, strip3_OsAtual, strip3_MaquinaAtual, strip2_ProcessadorAtual, strip2_DiscoAtual, strip2_RamAtual)
+
+
+        
+
+    
+
+
+def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
+
+    sql = ("UPDATE Torre  SET SerialID = %s,  SO = %s, Maquina = %s, Processador = %s, Disco = %s, VelocidadeRam = %s,  fkEmpresa = %s WHERE idTorre = 101")
+    values = (SerialID, OS, Maquina, Processador, Disco, RamSpeed, 1)
+
+    try:
+    # Executando comando SQL
+        cursor.execute(sql, values)
+
+        # Commit de mudanças no banco de dados
+        cnx.commit()
+
+        print("Inserindo dados...")
+
+    except mysql.connector.Error as err:
+        cnx.rollback()
+        print("Something went wrong: {}".format(err))
 
 
 
 Conexao('tecnico','urubu100','localhost','Monitoll')
-VerificarDadosMaquina(strip2_RamAtual)
+VerificarDadosMaquina(strip_SerialIdAtual)

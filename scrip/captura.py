@@ -173,13 +173,13 @@ def VerificarDadosMaquina(idTorre):
         # Executando comando SQL
         cursor.execute(query, (idTorre,))
         print("Verificando dados da torre...")
-        SerialID = cursor.fetchone()
+        SerialIdBanco = cursor.fetchone()
 
 
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     
-    if SerialID is not None:
+    if SerialIdBanco is not None:
         print("A torre possui dados cadastrados")
         print("Cadastrando leituras...")
         InserindoLeitura()

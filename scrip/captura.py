@@ -97,7 +97,7 @@ def teste():
 
 def InserindoLeitura():
     # PREGAR fkCOMPONENTE
-            queryComponente = ("SELECT `fkComponente` FROM Torre_Componente " 
+            queryComponente = ("SELECT fkComponente FROM Torre_Componente " 
                     "WHERE Torre_Componente.fkTorre = %s;")
 
             try:
@@ -120,7 +120,7 @@ def InserindoLeitura():
                 print(y)
 
                 # PEGAR CODIGO COMPONENTE
-                queryCodigo = ("SELECT `Codigo` FROM Componente " 
+                queryCodigo = ("SELECT Codigo FROM Componente " 
                     "WHERE Componente.idComponente = %s;")
 
                 try:
@@ -143,7 +143,7 @@ def InserindoLeitura():
 
 
                 # PREGAR NOME COMPONENTE
-                queryNome = ("SELECT `Nome` FROM Componente " 
+                queryNome = ("SELECT Nome FROM Componente " 
                     "WHERE Componente.idComponente = %s;")
 
                 try:
@@ -164,7 +164,7 @@ def InserindoLeitura():
 def VerificarDadosMaquina(SerialID):
 
 
-    query = ("SELECT `idTorre` FROM Torre "
+    query = ("SELECT idTorre FROM Torre "
                     "WHERE SerialID = %s;")
     print(SerialID)
                     
@@ -182,7 +182,7 @@ def VerificarDadosMaquina(SerialID):
         print("Something went wrong: {}".format(err))
 
 
-    query = ("SELECT `SerialID` FROM Torre "
+    query = ("SELECT SerialID FROM Torre "
                     "WHERE idTorre = %s;")
                     
     try:

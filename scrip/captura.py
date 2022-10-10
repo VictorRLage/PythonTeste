@@ -165,14 +165,14 @@ def VerificarDadosMaquina(SerialID):
 
 
     query = ("SELECT `idTorre` FROM Torre "
-                    "WHERE SerialID = %s;")
-    print(SerialID)             
+                    "WHERE SerialID = %s;")             
     try:
         # Executando comando SQL
         cursor.execute(query, (SerialID,))
-        print("Encontrou a torre")
         global idTorre
         idTorre = cursor.fetchone()
+        print("Encontrou a torre")
+        print(idTorre)
 
 
     except mysql.connector.Error as err:

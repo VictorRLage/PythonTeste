@@ -102,7 +102,7 @@ def InserindoLeitura():
 
             try:
                 # Executing the SQL command
-                cursor.execute(queryComponente, (idTorre,))
+                cursor.execute(queryComponente, (idTorre))
                 print("Pegando os componentes da torre...")
 
             except mysql.connector.Error as err:
@@ -182,7 +182,6 @@ def VerificarDadosMaquina(SerialID):
 
     query = ("SELECT `SerialID` FROM Torre "
                     "WHERE idTorre = %s;")
-    print(idTorre)
                     
     try:
         # Executando comando SQL

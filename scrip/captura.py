@@ -7,7 +7,8 @@ import functools
 import operator
 
 
-
+global idTorre
+idTorre =101
 # Bloco pegar serial id
 byte_SerialIdAtual = subprocess.check_output('''sudo dmidecode -s system-serial-number''', shell=True)
 str_SerialIdAtual = byte_SerialIdAtual.decode('UTF-8')
@@ -174,13 +175,14 @@ def VerificarDadosMaquina(idTorre):
         cursor.execute(query, (idTorre,))
         print("Verificando dados da torre...")
         SerialIdBanco = cursor.fetchone()
+
         print(SerialIdBanco)
 
 
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
     
-    if SerialIdBanco is not None:
+    if SerialIdBanco[0] is not None:
         print("A torre possui dados cadastrados")
         print("Cadastrando leituras...")
         InserindoLeitura()
@@ -215,4 +217,4 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
 
 Conexao('tecnico','urubu100','localhost','Monitoll')
-VerificarDadosMaquina(101)
+VerificarDadosMaquina(idTorre)

@@ -26,6 +26,7 @@ def Bibliotecas(psutil, mysql_connector, numpy):
              subprocess.run('pip install psutil', shell=True)
         if mysql_connector:
             subprocess.run('pip install mysql-connector', shell=True)
+            subprocess.run('pip install mysql-connector-python', shell=True)
         if numpy:
             subprocess.run('pip install numpy', shell=True)
 

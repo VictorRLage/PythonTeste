@@ -166,6 +166,7 @@ def VerificarDadosMaquina(SerialID):
 
     query = ("SELECT `idTorre` FROM Torre "
                     "WHERE SerialID = %s;")
+    print(SerialID)
                     
     try:
         # Executando comando SQL
@@ -173,6 +174,7 @@ def VerificarDadosMaquina(SerialID):
         print("Encontrou a torre")
         global idTorre
         idTorre = cursor.fetchone()
+        print(idTorre)
 
 
     except mysql.connector.Error as err:

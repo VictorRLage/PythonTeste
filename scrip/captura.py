@@ -171,13 +171,12 @@ def VerificarDadosMaquina(idTorre):
                     
     try:
         # Executando comando SQL
-        cursor.execute(query, (idTorre))
+        cursor.execute(query, (idTorre,))
         print("Verificando dados da torre...")
         SerialID = cursor.fetchone()
 
 
     except mysql.connector.Error as err:
-        print("Não encontrou a torre")
         print("Something went wrong: {}".format(err))
     
     if SerialID is not None:

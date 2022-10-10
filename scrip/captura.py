@@ -107,8 +107,10 @@ def InserindoLeitura():
 
             except mysql.connector.Error as err:
                 print("Something went wrong: {}".format(err))
+                print('teste exept')
 
             fkComponente= cursor.fetchall()
+            print(fkComponente)
             vet_fkComponente = numpy.asarray(fkComponente)
             print("Componentes da maquina:", vet_fkComponente)
 
@@ -166,7 +168,6 @@ def VerificarDadosMaquina(SerialID):
 
     query = ("SELECT idTorre FROM Torre "
                     "WHERE SerialID = %s;")
-    print(SerialID)
                     
     try:
         # Executando comando SQL
@@ -174,7 +175,6 @@ def VerificarDadosMaquina(SerialID):
         print("Encontrou a torre")
         global idTorre
         idTorre = cursor.fetchone()
-        print(idTorre)
 
 
     except mysql.connector.Error as err:

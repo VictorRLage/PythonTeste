@@ -166,7 +166,7 @@ def VerificarDadosMaquina(SerialID):
 
     query = ("SELECT `idTorre` FROM Torre "
                     "WHERE SerialID = %s;")
-                    
+    print(SerialID)             
     try:
         # Executando comando SQL
         cursor.execute(query, (SerialID,))

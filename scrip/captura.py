@@ -102,7 +102,7 @@ def InserindoLeitura():
 
             try:
                 # Executing the SQL command
-                cursor.execute(queryComponente, (idTorre))
+                cursor.execute(queryComponente, (idTorre,))
                 print("Pegando os componentes da torre...")
 
             except mysql.connector.Error as err:
@@ -170,7 +170,7 @@ def VerificarDadosMaquina(SerialID):
                     
     try:
         # Executando comando SQL
-        cursor.execute(query, (SerialID))
+        cursor.execute(query, (SerialID,))
         print("Encontrou a torre")
         global idTorre
         idTorre = cursor.fetchone()
@@ -187,7 +187,7 @@ def VerificarDadosMaquina(SerialID):
                     
     try:
         # Executando comando SQL
-        cursor.execute(query, (idTorre))
+        cursor.execute(query, (idTorre,))
         print("Verificando dados da torre...")
         SerialID = cursor.fetchone()
 

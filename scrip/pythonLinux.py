@@ -9,24 +9,24 @@ verificacao_numpy_byte = subprocess.check_output('''pip list | grep 'numpy' | un
 verificacao_numpy_str = verificacao_numpy_byte.decode('UTF-8')
 
 
-verificacao_psutil = True
-verificacao_mysql_connector = True
-verificacao_numpy = True
+verificacao_psutil = False
+verificacao_mysql_connector = False
+verificacao_numpy = False
 
 # Bloco setar  Boolean da bibliotecas
-if (verificacao_psutil_str != ''):
-    verificacao_psutil = False
-if (verificacao_mysql_connector_str != ''):
-    verificacao_mysql_connector = False
-if (verificacao_numpy_str != ''):
-    verificacao_numpy = False
+if (verificacao_psutil_str == ''):
+    verificacao_psutil = True
+if (verificacao_mysql_connector_str == ''):
+    verificacao_mysql_connector = True
+if (verificacao_numpy_str == ''):
+    verificacao_numpy = True
 
 def Bibliotecas(psutil, mysql_connector, numpy):
-        if not psutil:
+        if psutil:
              subprocess.run('pip install psutil', shell=True)
-        if not mysql_connector:
+        if mysql_connector:
             subprocess.run('pip install mysql-connector-python', shell=True)
-        if not numpy:
+        if numpy:
             subprocess.run('pip install numpy', shell=True)
 
 

@@ -107,7 +107,6 @@ def InserindoLeitura():
 
             except mysql.connector.Error as err:
                 print("Something went wrong: {}".format(err))
-                print('teste exept')
 
             fkComponente= cursor.fetchall()
             print(fkComponente)

@@ -87,16 +87,16 @@ INSERT INTO Componente VALUES (0, null, null),
                                (9,'disco_uso_porcentagem','psutil.disk_usage("C:\\\\")[3]'),
                                (10,'pacotes_enviados','round((psutil.net_io_counters(pernic=False, nowrap=True) [2] / 1024), 2)'),
                                (11,'pacotes_recebidos','round((psutil.net_io_counters(pernic=False, nowrap=True) [3] / 1024), 2)');
--- INSERT INTO Torre_Componente (fkTorre,fkComponente) values  (101, 2),
--- 	   													         (101, 3),
---                                                               (101, 4),
---                                                               (101, 5),
---                                                               (101, 6),
---                                                               (101, 7),
---                                                               (101, 8),
---                                                               (101, 9),
---                                                               (101, 10),
---                                                               (101, 11);
+INSERT INTO Torre_Componente (fkTorre,fkComponente) values  (101, 2),
+	   													         (101, 3),
+                                                              (101, 4),
+                                                              (101, 5),
+                                                              (101, 6),
+                                                              (101, 7),
+                                                              (101, 8),
+                                                              (101, 9),
+                                                              (101, 10),
+                                                              (101, 11);
 -- INSERT INTO TORRE_COMPONENTES VALUES ();
 select * from Torre;
 select * from Torre_Componente;

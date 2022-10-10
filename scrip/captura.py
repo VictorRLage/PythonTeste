@@ -171,7 +171,7 @@ def VerificarDadosMaquina(SerialID):
                     
     try:
         # Executando comando SQL
-        cursor.execute(query, (SerialID))
+        cursor.execute(query, (SerialID,))
         print("Encontrou a torre")
         global idTorre
         idTorre = cursor.fetchone()

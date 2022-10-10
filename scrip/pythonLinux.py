@@ -1,11 +1,4 @@
 import subprocess
-import mysql.connector
-import psutil
-import numpy
-import datetime
-
-import functools
-import operator
 
 # Bloco verifcar bibliotecas instaladas
 verificacao_psutil_byte = subprocess.check_output('''pip list | grep 'psutil' | uniq''', shell=True)
@@ -22,6 +15,29 @@ if (verificacao_mysql_connector_str != ''):
     verificacao_mysql_connector = False
 if (verificacao_numpy_str != ''):
     verificacao_numpy = False
+
+def Bibliotecas(psutil, mysql_connector, numpy):
+        if not psutil:
+             subprocess.run('pip install psutil', shell=True)
+        if not mysql_connector:
+            subprocess.run('pip install mysql-connector-python', shell=True)
+        if not numpy:
+            subprocess.run('pip install numpy', shell=True)
+
+
+Bibliotecas(verificacao_psutil, verificacao_mysql_connector,verificacao_numpy)
+
+
+
+
+import mysql.connector
+import psutil
+import numpy
+import datetime
+import functools
+import operator
+
+
 
 # Bloco pegar serial id
 byte_SerialIdAtual = subprocess.check_output('''sudo dmidecode -s system-serial-number''', shell=True)
@@ -65,14 +81,6 @@ str_RamAtual = byte_RamAtual.decode('UTF-8')
 strip_RamAtual = str_RamAtual.strip('\tType: ')
 global strip2_RamAtual
 strip2_RamAtual = strip_RamAtual.strip('\n')
-
-def Bibliotecas(psutil, mysql_connector, numpy):
-        if not psutil:
-             subprocess.run('pip install psutil', shell=True)
-        if not mysql_connector:
-            subprocess.run('pip install mysql-connector-python', shell=True)
-        if not numpy:
-            subprocess.run('pip install numpy', shell=True)
 
 def Conexao(user, senha, host, database):
         global cnx
@@ -256,7 +264,7 @@ def InserindoLeitura():
 
 
 
-Bibliotecas(verificacao_psutil, verificacao_mysql_connector,verificacao_numpy)
+
 Conexao('root','#Gf15533155708','localhost','Monitoll')
 VerificarDadosMaquina(strip2_RamAtual)
 

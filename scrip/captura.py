@@ -163,25 +163,7 @@ def InserindoLeitura():
                 print(strNome + " = " + strCodigo)
                 teste()
 
-def VerificarDadosMaquina(SerialID):
-
-
-    query = ("SELECT idTorre FROM Torre "
-                    "WHERE SerialID = %s;")
-                    
-    try:
-        # Executando comando SQL
-        print(SerialID)
-        cursor.execute(query, (SerialID,))
-        print("Encontrou a torre")
-        global idTorre
-        idTorre = cursor.fetchone()
-        print(idTorre)
-
-
-    except mysql.connector.Error as err:
-        print("Não encontrou a torre")
-        print("Something went wrong: {}".format(err))
+def VerificarDadosMaquina(idTorre):
 
 
     query = ("SELECT SerialID FROM Torre "
@@ -233,4 +215,4 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
 
 Conexao('tecnico','urubu100','localhost','Monitoll')
-VerificarDadosMaquina(strip_SerialIdAtual)
+VerificarDadosMaquina(101)

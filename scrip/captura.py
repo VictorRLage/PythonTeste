@@ -174,6 +174,7 @@ def VerificarDadosMaquina(idTorre):
         cursor.execute(query, (idTorre,))
         print("Verificando dados da torre...")
         SerialIdBanco = cursor.fetchone()
+        print(SerialIdBanco)
 
 
     except mysql.connector.Error as err:

@@ -182,10 +182,11 @@ def VerificarDadosMaquina(SerialID):
 
     query = ("SELECT `SerialID` FROM Torre "
                     "WHERE idTorre = %s;")
+    print(idTorre)
                     
     try:
         # Executando comando SQL
-        cursor.execute(query, (idTorre,))
+        cursor.execute(query, (idTorre))
         print("Verificando dados da torre...")
         SerialID = cursor.fetchone()
 

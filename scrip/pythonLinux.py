@@ -8,6 +8,11 @@ verificacao_mysql_connector_str = verificacao_mysql_connector_byte.decode('UTF-8
 verificacao_numpy_byte = subprocess.check_output('''pip list | grep 'numpy' | uniq''', shell=True)
 verificacao_numpy_str = verificacao_numpy_byte.decode('UTF-8')
 
+
+verificacao_psutil = True
+verificacao_mysql_connector = True
+verificacao_numpy = True
+
 # Bloco setar  Boolean da bibliotecas
 if (verificacao_psutil_str != ''):
     verificacao_psutil = False

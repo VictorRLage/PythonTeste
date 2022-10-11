@@ -168,6 +168,7 @@ def teste():
             var_leitura2 = round((((pacotes_perdidos_porcentagem[1] - pacotes_perdidos_porcentagem[0])/pacotes_perdidos_porcentagem[1])*100), 1)
         else:
             var_leitura2 = var_leitura
+        print(var_leitura2)
 
         sql = ("INSERT INTO Leitura (Leitura, DataHora, fkTorre, fkComponente) VALUES (%s, %s, %s, %s)")
         values = (var_leitura2, datahora, idTorre , y)

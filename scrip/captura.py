@@ -164,7 +164,6 @@ def teste():
                 PorcentCPU = (round(soma/processadores_qtd, 1))
             print(PorcentCPU)
             var_leitura2 = PorcentCPU
-
         else:
             var_leitura2 = var_leitura
 

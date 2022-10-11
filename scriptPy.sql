@@ -82,7 +82,7 @@ INSERT INTO Torre (idTorre, fkEmpresa) values  (101,1),
                                                (105,1);
 INSERT INTO Componente VALUES (0, null, null),
 							   (1, 'processadores_qtd','psutil.cpu_count(logical=True)'),
-                               (2, 'porcentagem_por_nucleo','psutil.cpu_percent(interval = 1, percpu = True)'),
+                               (2, 'processadores_nucleo_porcentagem','psutil.cpu_percent(interval = 1, percpu = True)'),
 							   (3, 'ram_total','round((psutil.virtual_memory() [0] / 10**9), 4)'),
                                (4, 'ram_uso', 'round((psutil.virtual_memory() [3] / 10**9), 4)'),
                                (5,'ram_uso_porcentagem','round((psutil.virtual_memory() [2]), 1)'),
@@ -91,7 +91,8 @@ INSERT INTO Componente VALUES (0, null, null),
                                (8,'disco_livre','round((psutil.disk_usage("/")[2] / 10**12), 3)'),
                                (9,'disco_uso_porcentagem','psutil.disk_usage("/")[3]'),
                                (10,'pacotes_enviados','round((psutil.net_io_counters(pernic=False, nowrap=True) [2] / 1024), 2)'),
-                               (11,'pacotes_recebidos','round((psutil.net_io_counters(pernic=False, nowrap=True) [3] / 1024), 2)');
+                               (11,'pacotes_recebidos','round((psutil.net_io_counters(pernic=False, nowrap=True) [3] / 1024), 2)'),
+                               (12,'pacotes_perdidos_porcentagem','[pacotes_enviados, pacotes_recebidos]')
 INSERT INTO Torre_Componente (fkTorre,fkComponente) values  (101, 2),
 	   													         (101, 3),
                                                               (101, 4),

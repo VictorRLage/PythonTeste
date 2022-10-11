@@ -1,5 +1,5 @@
 import subprocess
-from time import sleep, time
+import time
 import mysql.connector
 import psutil
 import numpy

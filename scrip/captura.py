@@ -282,7 +282,8 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
     try:
     # Executando comando SQL
-        cursor.execute(sql, (values,))
+        print(values)
+        cursor.execute(sql, values)
 
         # Commit de mudanças no banco de dados
         cnx.commit()

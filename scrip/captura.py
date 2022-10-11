@@ -10,50 +10,37 @@ from tkinter import ttk
 
 
 
-def validateLogin(): 
-    global e_email
-    e_email = email_empresa.get()
-    print("email_empresa entered :", e_email)
-    global e_senha
-    e_senha = password.get()
-    print("password entered :", e_senha)
-    global e_maquina
-    e_maquina = maquina_cb.get()
-    print("idMaquina entered :", e_maquina) 
-    tkWindow.after(1000,lambda:tkWindow.quit())
-    return 
+def Login():
+    global u_email
+    u_email = input('Seu e-mail: ')
+    global u_senha
+    u_senha = input('Sua senha: ')
+    global e_cadastro
+    e_cadastro = input('Cadastro da empresa: ')
 
 
+def SelectIdTorre():
 
-#window
-global tkWindow
-tkWindow = Tk()  
-tkWindow.geometry('450x250')
-tkWindow.resizable(False, False)  
-tkWindow.title('Green Light || Login Empresa')
+    query = ("SELECT Nome FROM Usuario "
+                    "WHERE Email = %s and Senha = %s;")
+    values = (u_email, u_senha)
+                    
+    try:
+        # Executando comando SQL
+        cursor.execute(query, (values))
+        print("Fazendo login...")
+        usuario = cursor.fetchone()
+        
 
-#username label and text entry box
-header = Label(tkWindow, text="Login Green Light", font=("Arial", 15),height=3).grid(row=0, column=2)
-usernameLabel = Label(tkWindow, text="Email empresa: ", font=("Arial", 12)).grid(row=2, column=1)
-global email_empresa
-email_empresa = StringVar()
-usernameEntry = Entry(tkWindow, textvariable=email_empresa, width=25).grid(row=2, column=2)  
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
+    
+    if usuario is not None:
+        print('Olá, ',usuario)
+    else:
+        print('Email ou senha incoretos')
+        Login()
 
-#password label and password entry box
-passwordLabel = Label(tkWindow,text="Senha :", font=("Arial", 12)).grid(row=5, column=1)  
-global password
-password = StringVar()
-passwordEntry = Entry(tkWindow, textvariable=password, show='*', width=25).grid(row=5, column=2) 
-
-#
-label = Label(tkWindow, text="Selecione qual é essa maquina:", font=("Arial", 12)).grid(row=7, column=2)
-listaIdMaquina = [101,102,103,104,105]
-maquina_cb = ttk.Combobox(tkWindow, values=listaIdMaquina, width=22, state="readonly")
-maquina_cb.grid(row=8, column=2)
-
-#login button
-loginButton = Button(tkWindow, text="Login", command=validateLogin, font=("Arial", 11), ).grid(row=10, column=2) 
-tkWindow.mainloop()
 
 
 global idTorre

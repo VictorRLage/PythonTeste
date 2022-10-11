@@ -8,7 +8,8 @@ verificacao_mysql_connector_byte = subprocess.check_output('''pip list | grep 'm
 verificacao_mysql_connector_str = verificacao_mysql_connector_byte.decode('UTF-8')
 verificacao_numpy_byte = subprocess.check_output('''pip list | grep 'numpy' | uniq''', shell=True)
 verificacao_numpy_str = verificacao_numpy_byte.decode('UTF-8')
-
+verificacao_numpy_byte = subprocess.check_output('''pip list | grep 'numpy' | uniq''', shell=True)
+verificacao_numpy_str = verificacao_numpy_byte.decode('UTF-8')
 
 verificacao_psutil = False
 verificacao_mysql_connector = False

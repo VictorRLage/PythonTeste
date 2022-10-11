@@ -158,11 +158,10 @@ def teste():
         exec(strNome + " = " + strCodigo, globals())
         var_leitura = globals()[strNome]
         if strNome == 'porcentagem_por_nucleo':
-            print('caiu no if')
             soma = 0
             for x in var_leitura:
                 soma = soma + x
-                PorcentCPU = (round(soma/2, 8))
+                PorcentCPU = (round(soma/processadores_qtd, 8))
             print(PorcentCPU)
             var_leitura2 = PorcentCPU
 

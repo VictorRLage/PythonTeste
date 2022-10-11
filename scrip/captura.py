@@ -10,6 +10,7 @@ from tkinter import ttk
 
 
 
+
 def Login():
     global u_email
     u_email = input('Seu e-mail: ')
@@ -249,5 +250,6 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
 
 
+Login()
 Conexao('tecnico','urubu100','localhost','Monitoll')
 VerificarDadosMaquina(idTorre)

@@ -5,8 +5,8 @@ import numpy
 import datetime
 import functools
 import operator
-from tkinter import *
-from tkinter import ttk
+from tk import *
+from tk import ttk
 
 
 

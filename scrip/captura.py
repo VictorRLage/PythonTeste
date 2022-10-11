@@ -37,12 +37,16 @@ def SelectIdTorre(u_email,u_senha):
         print("Something went wrong: {}".format(err))
     
     if usuario is not None:
-        print('Olá, ',usuario)
+        def convertTuple(tup):
+            str = ''
+            for item in tup:
+                str = str + item
+            return str
+        str_usuario = convertTuple(usuario)
+        print('Olá,',str_usuario)
     else:
         print('Email ou senha incoretos')
         Login()
-    return
-
 
 
 global idTorre

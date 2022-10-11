@@ -162,17 +162,15 @@ def teste():
             soma = 0
             for x in var_leitura:
                 soma = soma + x
-                PorcentCPU = (round(soma/processadores_qtd, 8))
+                PorcentCPU = (round(soma/2, 8))
             print(PorcentCPU)
-            tuple_leitura = (PorcentCPU,)
+            var_leitura2 = PorcentCPU
 
         else:
-            tuple_leitura = (var_leitura,)
-            print(tuple_leitura)
-            print(type(tuple_leitura))        
+            var_leitura2 = var_leitura
 
         sql = ("INSERT INTO Leitura (Leitura, DataHora, fkTorre, fkComponente) VALUES (%s, %s, %s, %s)")
-        values = (var_leitura, datahora, idTorre , y)
+        values = (var_leitura2, datahora, idTorre , y)
 
 
         try:

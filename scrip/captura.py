@@ -81,7 +81,6 @@ def SelectIdTorre(fkEmpresa):
         print("Something went wrong: {}".format(err))
 
 
-global idTorre
 idTorre =101
 # Bloco pegar serial id
 byte_SerialIdAtual = subprocess.check_output('''sudo dmidecode -s system-serial-number''', shell=True)

@@ -73,8 +73,8 @@ def SelectIdTorre(fkEmpresa):
     try:
         # Executando comando SQL
         cursor.execute(query, (fkEmpresa))
-        print(idTorre)
         idTorre = cursor.fetchall()
+        print(idTorre)
         
 
     except mysql.connector.Error as err:

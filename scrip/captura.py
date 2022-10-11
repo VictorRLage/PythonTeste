@@ -164,6 +164,8 @@ def teste():
                 PorcentCPU = (round(soma/processadores_qtd, 1))
             print(PorcentCPU)
             var_leitura2 = PorcentCPU
+        elif strNome == 'pacotes_perdidos_porcentagem':
+            var_leitura2 = round((((pacotes_perdidos_porcentagem[1] - pacotes_perdidos_porcentagem[0])/pacotes_perdidos_porcentagem[1])*100), 1)
         else:
             var_leitura2 = var_leitura
 

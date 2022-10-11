@@ -1,4 +1,5 @@
 import subprocess
+from time import sleep, time
 import mysql.connector
 import psutil
 import numpy
@@ -297,3 +298,4 @@ Conexao('tecnico','urubu100','localhost','Monitoll')
 Login()
 while True:
     VerificarDadosMaquina(idTorre)
+    time.sleep(10)

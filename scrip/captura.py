@@ -12,15 +12,15 @@ from tkinter import ttk
 
 
 def Login():
-    global u_email
     u_email = input('Seu e-mail: ')
-    global u_senha
     u_senha = input('Sua senha: ')
     global e_cadastro
     e_cadastro = input('Cadastro da empresa: ')
+    SelectIdTorre(u_email,u_senha)
+    
 
 
-def SelectIdTorre():
+def SelectIdTorre(u_email,u_senha):
 
     query = ("SELECT Nome FROM Usuario "
                     "WHERE Email = %s and Senha = %s;")

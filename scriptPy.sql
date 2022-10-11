@@ -75,11 +75,11 @@ INSERT INTO Usuario VALUES (null,"Pedro Neto",null,"pedro.cordeironeto@sptech.sc
                                   (null,"Luigi Ceolin",null,"luigi.ceolin@sptech.school","123",1,NULL),
                                   (null, "Adm EmpTeste",null, "admempteste@gmail.com",'123', 2, 1),
                                   (null, "Fun EmpTeste",null, "funempteste@gmail.com",'123', 3, 1);
-INSERT INTO Torre (idTorre) values  (101),
-                                    (102),
-                                    (103),
-                                    (104),
-                                    (105);
+INSERT INTO Torre (idTorre, fkEmpresa) values  (101,1),
+                                               (102,1),
+                                               (103,1),
+                                               (104,1),
+                                               (105,1);
 INSERT INTO Componente VALUES (0, null, null),
 							   (2, 'Processadores_qtd','psutil.cpu_count(logical=True)'),
 							   (3, 'ram_total','round((psutil.virtual_memory() [0] / 10**9), 4)'),

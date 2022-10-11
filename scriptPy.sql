@@ -81,7 +81,8 @@ INSERT INTO Torre (idTorre, fkEmpresa) values  (101,1),
                                                (104,1),
                                                (105,1);
 INSERT INTO Componente VALUES (0, null, null),
-							   (2, 'Processadores_qtd','psutil.cpu_count(logical=True)'),
+							   (1, 'processadores_qtd','psutil.cpu_count(logical=True)'),
+                               (2, 'porcentagem_por_nucleo','psutil.cpu_percent(interval = 1, percpu = True)'),
 							   (3, 'ram_total','round((psutil.virtual_memory() [0] / 10**9), 4)'),
                                (4, 'ram_uso', 'round((psutil.virtual_memory() [3] / 10**9), 4)'),
                                (5,'ram_uso_porcentagem','round((psutil.virtual_memory() [2]), 1)'),
@@ -110,7 +111,7 @@ INSERT INTO Torre_Componente (fkTorre,fkComponente) values  (101, 2),
                                                               (103, 9),
                                                               (104, 10),
                                                               (104, 11),
-                                                              (105, 2);
+                                                              (105, 2;
 -- INSERT INTO TORRE_COMPONENTES VALUES ();
 select * from Torre;
 select * from Torre_Componente;

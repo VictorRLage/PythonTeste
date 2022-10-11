@@ -157,6 +157,12 @@ def teste():
         print(datahora)
         exec(strNome + " = " + strCodigo, globals())
         var_leitura = globals()[strNome]
+        if strNome == 'porcentagem_por_nucleo':
+            soma = 0
+            for x in var_leitura:
+                soma = soma + x
+                PorcentCPU = (round(soma/processadores_qtd, 1))
+        print(PorcentCPU)
         tuple_leitura = (var_leitura,)
         print(tuple_leitura)
         print(type(tuple_leitura))        
@@ -284,7 +290,6 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
     try:
     # Executando comando SQL
-        print(values)
         cursor.execute(sql, values)
 
         # Commit de mudanças no banco de dados

@@ -59,26 +59,34 @@ def ValidacaoLogin(u_email,u_senha):
         except mysql.connector.Error as err:
             print("Something went wrong: {}".format(err))
 
-        SelectIdTorre(fkEmpresa)
+        SelectIdTorres(fkEmpresa)
 
 
     else:
         print('Email ou senha incoretos')
         Login()
 
-def SelectIdTorre(fkEmpresa):
+def EscolherTorres(idTorres):
+    maquinas = numpy.asarray(idTorres)
+    print('Maquinas:', maquinas)
+    global idTorre
+    idTorre = input('Qual é esta maquina?')
+
+def SelectIdTorres(fkEmpresa):
 
     query = ("SELECT idTorre FROM Torre "
                     "WHERE fkEmpresa = %s;")                    
     try:
         # Executando comando SQL
         cursor.execute(query, (fkEmpresa))
-        idTorre = cursor.fetchall()
-        print(idTorre)
+        idTorres = cursor.fetchall()
+        print(idTorres)
         
 
     except mysql.connector.Error as err:
         print("Something went wrong: {}".format(err))
+    
+    EscolherTorres(idTorres)
 
 
 # Bloco pegar serial id

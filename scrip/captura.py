@@ -72,7 +72,7 @@ def SelectIdTorre(fkEmpresa):
                     "WHERE fkEmpresa = %s;")                    
     try:
         # Executando comando SQL
-        cursor.execute(query, (fkEmpresa,))
+        cursor.execute(query, (fkEmpresa))
         print(idTorre)
         idTorre = cursor.fetchall()
         

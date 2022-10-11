@@ -166,8 +166,10 @@ def teste():
             print(PorcentCPU)
             var_leitura2 = PorcentCPU
         elif strNome == 'pacotes_perdidos_porcentagem':
+            print('caiu no elif')
             var_leitura2 = round((((pacotes_perdidos_porcentagem[1] - pacotes_perdidos_porcentagem[0])/pacotes_perdidos_porcentagem[1])*100), 1)
         else:
+            print('caiu no else')
             var_leitura2 = var_leitura
         print(var_leitura2)
 

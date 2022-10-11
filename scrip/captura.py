@@ -54,7 +54,8 @@ def ValidacaoLogin(u_email,u_senha):
             # Executando comando SQL
             cursor.execute(queryFkEmpresa, (valuesFkEmpresa))
             global fkEmpresa
-            fkEmpresa = cursor.fetchone()
+            tuple_fkEmpresa = cursor.fetchone()
+            fkEmpresa = sum(tuple_fkEmpresa)
             print('fkEmpresa:', fkEmpresa)
         
 

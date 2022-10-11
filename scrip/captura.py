@@ -162,7 +162,7 @@ def teste():
             for x in var_leitura:
                 soma = soma + x
                 PorcentCPU = (round(soma/processadores_qtd, 1))
-        print(PorcentCPU)
+                print(PorcentCPU) 
         tuple_leitura = (var_leitura,)
         print(tuple_leitura)
         print(type(tuple_leitura))        

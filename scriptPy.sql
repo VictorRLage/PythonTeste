@@ -111,7 +111,8 @@ INSERT INTO Torre_Componente (fkTorre,fkComponente) values  (101, 2),
                                                               (103, 9),
                                                               (104, 10),
                                                               (104, 11),
-                                                              (105, 2;
+                                                              (105, 1),
+                                                              (105, 2);
 -- INSERT INTO TORRE_COMPONENTES VALUES ();
 select * from Torre;
 select * from Torre_Componente;

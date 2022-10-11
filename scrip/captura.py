@@ -161,7 +161,7 @@ def teste():
             soma = 0
             for x in var_leitura:
                 soma = soma + x
-                PorcentCPU = (round(soma/processadores_qtd, 8))
+                PorcentCPU = (round(soma/processadores_qtd, 1))
             print(PorcentCPU)
             var_leitura2 = PorcentCPU
 

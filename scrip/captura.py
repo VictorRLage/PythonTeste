@@ -1,3 +1,4 @@
+from statistics import mean
 import subprocess
 import time
 import mysql.connector
@@ -166,8 +167,11 @@ def teste():
             print(PorcentCPU)
             var_leitura2 = PorcentCPU
         elif strNome == 'pacotes_perdidos_porcentagem':
-            print('caiu no elif')
+            print('caiu no elif 1')
             var_leitura2 = round((((pacotes_perdidos_porcentagem[1] - pacotes_perdidos_porcentagem[0])/pacotes_perdidos_porcentagem[1])*100), 1)
+        elif strNome == 'processadores_nucleo_porcentagem':
+            print('caiu no elif 2')
+            var_leitura2 = numpy.mean(var_leitura) 
         else:
             print('caiu no else')
             var_leitura2 = var_leitura

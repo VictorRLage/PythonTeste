@@ -295,4 +295,5 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
 Conexao('tecnico','urubu100','localhost','Monitoll')
 Login()
-VerificarDadosMaquina(idTorre)
+while True:
+    VerificarDadosMaquina(idTorre)

@@ -53,6 +53,7 @@ def ValidacaoLogin(u_email,u_senha):
         try:
             # Executando comando SQL
             cursor.execute(queryFkEmpresa, (valuesFkEmpresa))
+            global fkEmpresa
             fkEmpresa = cursor.fetchone()
             print('fkEmpresa:', fkEmpresa)
         
@@ -276,8 +277,8 @@ def VerificarDadosMaquina(idTorre):
 
 def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
-    sql = ("UPDATE Torre  SET SerialID = %s,  SO = %s, Maquina = %s, Processador = %s, Disco = %s, VelocidadeRam = %s,  fkEmpresa = %s WHERE idTorre = 101")
-    values = (SerialID, OS, Maquina, Processador, Disco, RamSpeed, 1)
+    sql = ("UPDATE Torre  SET SerialID = %s,  SO = %s, Maquina = %s, Processador = %s, Disco = %s, VelocidadeRam = %s,  fkEmpresa = %s WHERE idTorre = %s")
+    values = (SerialID, OS, Maquina, Processador, Disco, RamSpeed, fkEmpresa, idTorre)
 
     try:
     # Executando comando SQL

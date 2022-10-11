@@ -75,7 +75,11 @@ INSERT INTO Usuario VALUES (null,"Pedro Neto",null,"pedro.cordeironeto@sptech.sc
                                   (null,"Luigi Ceolin",null,"luigi.ceolin@sptech.school","123",1,NULL),
                                   (null, "Adm EmpTeste",null, "admempteste@gmail.com",'123', 2, 1),
                                   (null, "Fun EmpTeste",null, "funempteste@gmail.com",'123', 3, 1);
-INSERT INTO Torre (idTorre) values  (101);
+INSERT INTO Torre (idTorre) values  (101),
+                                    (102),
+                                    (103),
+                                    (104),
+                                    (105);
 INSERT INTO Componente VALUES (0, null, null),
 							   (2, 'Processadores_qtd','psutil.cpu_count(logical=True)'),
 							   (3, 'ram_total','round((psutil.virtual_memory() [0] / 10**9), 4)'),
@@ -96,7 +100,17 @@ INSERT INTO Torre_Componente (fkTorre,fkComponente) values  (101, 2),
                                                               (101, 8),
                                                               (101, 9),
                                                               (101, 10),
-                                                              (101, 11);
+                                                              (101, 11),
+                                                              (102, 3),
+                                                              (102, 4),
+                                                              (102, 5),
+                                                              (103, 6),
+                                                              (103, 7),
+                                                              (103, 8),
+                                                              (103, 9),
+                                                              (104, 10),
+                                                              (104, 11),
+                                                              (105, 2);
 -- INSERT INTO TORRE_COMPONENTES VALUES ();
 select * from Torre;
 select * from Torre_Componente;

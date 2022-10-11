@@ -14,13 +14,11 @@ from tkinter import ttk
 def Login():
     u_email = input('Seu e-mail: ')
     u_senha = input('Sua senha: ')
-    global e_cadastro
-    e_cadastro = input('Cadastro da empresa: ')
-    SelectIdTorre(u_email,u_senha)
+    ValidacaoLogin(u_email,u_senha)
     
 
 
-def SelectIdTorre(u_email,u_senha):
+def ValidacaoLogin(u_email,u_senha):
 
     query = ("SELECT Nome FROM Usuario "
                     "WHERE Email = %s and Senha = %s;")
@@ -43,10 +41,44 @@ def SelectIdTorre(u_email,u_senha):
                 str = str + item
             return str
         str_usuario = convertTuple(usuario)
-        print('Olá,',str_usuario)
+        print('Olá,',str_usuario,'!')
+
+
+
+        queryFkEmpresa = ("SELECT fkEmpresa FROM Usuario "
+                    "WHERE Email = %s and Senha = %s;")
+        valuesFkEmpresa = (u_email, u_senha)
+                    
+        try:
+            # Executando comando SQL
+            cursor.execute(queryFkEmpresa, (valuesFkEmpresa))
+            fkEmpresa = cursor.fetchone()
+            print('fkEmpresa:', fkEmpresa)
+        
+
+        except mysql.connector.Error as err:
+            print("Something went wrong: {}".format(err))
+
+        SelectIdTorre(fkEmpresa)
+
+
     else:
         print('Email ou senha incoretos')
         Login()
+
+def SelectIdTorre(fkEmpresa):
+
+    query = ("SELECT idTorre FROM Torre "
+                    "WHERE fkEmpresa = %s;")                    
+    try:
+        # Executando comando SQL
+        cursor.execute(query, (fkEmpresa,))
+        print(idTorre)
+        idTorre = cursor.fetchall()
+        
+
+    except mysql.connector.Error as err:
+        print("Something went wrong: {}".format(err))
 
 
 global idTorre

@@ -2,7 +2,7 @@ import pyodbc
 import textwrap
 
 #Definindo o driver
-driver = '{ODBC Driver 17 for SQL Server}'
+driver = '{ODBC Driver 18 for SQL Server}'
 # definindo server e database
 server_name = 'montioll'
 database_name = 'Monitoll'

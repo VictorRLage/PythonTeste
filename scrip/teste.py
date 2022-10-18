@@ -6,8 +6,6 @@ import numpy
 import datetime
 import functools
 import operator
-from tkinter import *
-from tkinter import ttk
 import pyodbc
 import textwrap
 

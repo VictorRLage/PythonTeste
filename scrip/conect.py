@@ -54,6 +54,5 @@ crsr.executemany(insert_sql, records)
 # commit 
 crsr.commit()
 
-
 # close the connection
 cnxn.close()

@@ -24,6 +24,8 @@ def ValidacaoLogin(u_email,u_senha):
     records = (u_email, u_senha)
                     
     try:
+        global cursor
+        cursor = cnx.cursor()
         # Executando comando SQL
         cursor.executemany(selectnome_sql, records)
         print("Fazendo login...")
@@ -41,8 +43,6 @@ def ValidacaoLogin(u_email,u_senha):
             return str
         str_usuario = convertTuple(usuario)
         print('Olá,',str_usuario,'!')
-
-
 
         selecfkempresa_sql = "SELECT fkEmpresa FROM Usuario WHERE Email = ? and Senha = ?;"
         records2 = (u_email, u_senha)
@@ -160,18 +160,9 @@ def Conexao():
             password=password
         ))
         
-
         # criando o objeto de conecxao
         cnxn:pyodbc.Connection = pyodbc.connect(connection_string)    
 
-        # if cnx.is_connected():
-        #     db_info = cnx.get_server_info()
-        #     print('conectado', db_info)
-        #     global cursor
-        #     cursor = cnx.cursor()
-        #     cursor.execute("select database();")
-        #     linha = cursor.fetchone()
-        #     print("Conectado ao banco de dados:", linha)
 
 def teste():
         print("Inserindo leitura no banco...")

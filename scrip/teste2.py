@@ -43,13 +43,12 @@ def ValidacaoLogin():
         str_usuario = convertTuple(usuario)
         print('Olá,',str_usuario,'!')
 
-        queryFkEmpresa = cursor.executemany('''
+        queryFkEmpresa = cursor.execute('''
         SELECT fkEmpresa FROM Usuario WHERE Email = ?
         ''',u_email)
                     
         try:
             # Executando comando SQL
-            cursor.execute(queryFkEmpresa)
             global fkEmpresa
             fkEmpresa = cursor.fetchone()
             global int_fkEmpresa

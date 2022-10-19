@@ -13,18 +13,17 @@ import textwrap
 
 def Login():
     u_email = input('Seu e-mail: ')
-    u_senha = input('Sua senha: ')
-    ValidacaoLogin(u_email,u_senha)
+    # u_senha = input('Sua senha: ')
+    ValidacaoLogin(u_email)
     
 
-def ValidacaoLogin(u_email,u_senha):
+def ValidacaoLogin(u_email):
 
     email = u_email 
-    senha = u_senha
 
-    query = cursor.executemany('''
-    SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
-    ''',email, senha)
+    query = cursor.execute('''
+    SELECT Nome FROM Usuario WHERE Email = ?
+    ''',email)
                     
     try:
         # Executando comando SQL

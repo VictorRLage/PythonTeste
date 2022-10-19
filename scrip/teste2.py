@@ -164,14 +164,6 @@ def Conexao():
 
         cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
 
-        if cnxn.connect():
-            print('conectado')
-            global cursor
-            cursor = cnxn.cursor()
-            cursor.execute("select database();")
-            linha = cursor.fetchone()
-            print("Conectado ao banco de dados:", linha)
-
 
 def teste():
         print("Inserindo leitura no banco...")

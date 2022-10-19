@@ -10,6 +10,44 @@ import pyodbc
 import textwrap3
 
 
+def Conexao():
+        # variaveis de conexao
+        driver ='{ODBC Driver 18 for SQL Server}'
+        server_name = 'montioll'
+        database_name = 'Monitoll'
+        server = '{server_name}.database.windows.net,1433'.format(servername=server_name)
+        username = 'Monitoll'
+        password = 'Grupo7@123'
+        # definindo banco url 
+        cnxn = connection_string = textwrap.dedent("""
+        Driver={driver};
+        Server={server};
+        Database={database};
+        Uid={username};
+        Pwd={password};
+        Encrypt=yes;
+        TrustedServerCertificate=no;
+        Connection Timeout=10;
+        """.format(
+            driver=driver,
+            server=server,
+            database=database_name,
+            username=username,
+            password=password
+        )) 
+
+        cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
+
+        if cnxn.is_connected():
+            db_info = cnxn.get_server_info()
+            print('conectado', db_info)
+            global cursor
+            cursor = cnxn.cursor()
+            cursor.execute("select database();")
+            linha = cursor.fetchone()
+            print("Conectado ao banco de dados:", linha)
+
+
 def Login():
     u_email = input('Seu e-mail: ')
     u_senha = input('Sua senha: ')
@@ -133,43 +171,6 @@ str_RamAtual = byte_RamAtual.decode('UTF-8')
 strip_RamAtual = str_RamAtual.strip('\tType: ')
 global strip2_RamAtual
 strip2_RamAtual = strip_RamAtual.strip('\n')
-
-def Conexao():
-        # variaveis de conexao
-        driver ='{ODBC Driver 18 for SQL Server}'
-        server_name = 'montioll'
-        database_name = 'Monitoll'
-        server = '{server_name}.database.windows.net,1433'.format(servername=server_name)
-        username = 'Monitoll'
-        password = 'Grupo7@123'
-        # definindo banco url 
-        cnxn = connection_string = textwrap.dedent("""
-        Driver={driver};
-        Server={server};
-        Database={database};
-        Uid={username};
-        Pwd={password};
-        Encrypt=yes;
-        TrustedServerCertificate=no;
-        Connection Timeout=10;
-        """.format(
-            driver=driver,
-            server=server,
-            database=database_name,
-            username=username,
-            password=password
-        )) 
-
-        cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
-
-        if cnxn.is_connected():
-            db_info = cnxn.get_server_info()
-            print('conectado', db_info)
-            global cursor
-            cursor = cnxn.cursor()
-            cursor.execute("select database();")
-            linha = cursor.fetchone()
-            print("Conectado ao banco de dados:", linha)
 
 
 def teste():

@@ -28,7 +28,7 @@ def ValidacaoLogin(u_email,u_senha):
                     
     try:
         # Executando comando SQL
-        cursor.execute(query, (values))
+        cursor.executemany(query, (values))
         print("Fazendo login...")
         usuario = cursor.fetchone()
         

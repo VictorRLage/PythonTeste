@@ -1,3 +1,4 @@
+import email
 from statistics import mean
 import subprocess
 import time
@@ -18,15 +19,16 @@ def Login():
 
 def ValidacaoLogin(u_email,u_senha):
 
-    vetorValues = [(u_email, u_senha)]
+    email = u_email 
+    senha = u_senha
 
     query = cursor.executemany('''
     SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
-    ''',vetorValues)
+    ''',email, senha)
                     
     try:
         # Executando comando SQL
-        cursor.execute(query,vetorValues)
+        cursor.execute(query)
         print("Fazendo login...")
         usuario = cursor.fetchone()
         

@@ -24,8 +24,6 @@ def ValidacaoLogin(u_email,u_senha):
     records = (u_email, u_senha)
                     
     try:
-        global cursor
-        cursor = cnx.cursor()
         # Executando comando SQL
         cursor.executemany(selectnome_sql, records)
         print("Fazendo login...")
@@ -133,6 +131,7 @@ global strip2_RamAtual
 strip2_RamAtual = strip_RamAtual.strip('\n')
 
 def Conexao():
+        global cnx
         #Definindo o driver
         driver = '{ODBC Driver 18 for SQL Server}'
         # definindo server e database
@@ -143,7 +142,7 @@ def Conexao():
         username = 'Monitoll'
         password = 'Grupo7@123'
         # definindo o banco url
-        connection_string = textwrap.dedent("""
+        cnx = connection_string = textwrap.dedent("""
             Driver={driver};
             Server={server};
             Database={database};
@@ -159,6 +158,8 @@ def Conexao():
             username=username,
             password=password
         ))
+        global cursor
+        cursor = cnx.cursor()
         
         # criando o objeto de conecxao
         cnxn:pyodbc.Connection = pyodbc.connect(connection_string)    

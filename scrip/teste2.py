@@ -161,8 +161,8 @@ def Conexao():
         cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
 
         global cursor
-        cursor.fast_executemany = True
         cursor = cnxn.cursor()
+        cursor.fast_executemany = True
 
 
 def teste():

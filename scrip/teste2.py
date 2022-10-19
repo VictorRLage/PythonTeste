@@ -14,7 +14,7 @@ import textwrap
 def Login():
     u_email = input('Seu e-mail: ')
     u_senha = input('Sua senha: ')
-    ValidacaoLogin(u_email,u_senha)
+    ValidacaoLogin(self, u_email,u_senha)
     
 
 def ValidacaoLogin(self, u_email, u_senha):

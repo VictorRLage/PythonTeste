@@ -36,13 +36,12 @@ cnxn:pyodbc.Connection = pyodbc.connect(connection_string)
 crsr: pyodbc.Cursor = cnxn.cursor()
 
 #criando execute vdd
-crsr.fast_executemany= True
 
 #records 
 records = u_email = input('Seu e-mail: ')
 
 # select 
-select_sql =  crsr.executemany('''
+select_sql =  crsr.execute('''
 SELECT * FROM Usuario WHERE Email = ?
     ''',records)
 

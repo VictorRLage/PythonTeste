@@ -19,7 +19,8 @@ def Login():
 
 def ValidacaoLogin(u_email,u_senha):
 
-    query = "SELECT Nome FROM Usuario WHERE Email = %s and Senha = %s"
+    query = ("SELECT Nome FROM Usuario "
+                    "WHERE Email = %s and Senha = %s;")
     values = (u_email, u_senha)
                     
     try:
@@ -43,7 +44,8 @@ def ValidacaoLogin(u_email,u_senha):
 
 
 
-        queryFkEmpresa = "SELECT fkEmpresa FROM Usuario WHERE Email = %s and Senha = %s"
+        queryFkEmpresa = ("SELECT fkEmpresa FROM Usuario "
+                    "WHERE Email = %s and Senha = %s;")
         valuesFkEmpresa = (u_email, u_senha)
                     
         try:
@@ -132,7 +134,7 @@ strip_RamAtual = str_RamAtual.strip('\tType: ')
 global strip2_RamAtual
 strip2_RamAtual = strip_RamAtual.strip('\n')
 
-def Conexao():
+def Conexao(user, senha, host, database):
         # variaveis de conexao
         driver ='{ODBC Driver 18 for SQL Server}'
         server_name = 'montioll'
@@ -141,7 +143,7 @@ def Conexao():
         username = 'Monitoll'
         password = 'Grupo7@123'
         # definindo banco url 
-        cnxn = connection_string = textwrap.dedent("""
+        cnx = connection_string = textwrap.dedent("""
         Driver={driver};
         Server={server};
         Database={database};
@@ -158,13 +160,13 @@ def Conexao():
             password=password
         )) 
 
-        cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
+        cnx:pyodbc.Connection = pyodbc.connect(connection_string) 
 
-        if cnxn.is_connected():
-            db_info = cnxn.get_server_info()
+        if cnx.is_connected():
+            db_info = cnx.get_server_info()
             print('conectado', db_info)
             global cursor
-            cursor = cnxn.cursor()
+            cursor = cnx.cursor()
             cursor.execute("select database();")
             linha = cursor.fetchone()
             print("Conectado ao banco de dados:", linha)
@@ -204,12 +206,12 @@ def teste():
             cursor.execute(sql, values)
 
             # Commit de mudanças no banco de dados
-            cnxn.commit()
+            cnx.commit()
 
             print("Leitura inserida no banco")
 
         except pyodbc.Error as err:
-            cnxn.rollback()
+            cnx.rollback()
             print("Something went wrong: {}".format(err))
 
             
@@ -317,10 +319,18 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
         cursor.execute(sql, values)
 
         # Commit de mudanças no banco de dados
-        cnxn.commit()
+        cnx.commit()
 
         print("Inserindo dados...")
 
     except pyodbc.Error as err:
-        cnxn.rollback()
+        cnx.rollback()
         print("Something went wrong: {}".format(err))
+
+
+
+Conexao('tecnico','urubu100','localhost','Monitoll')
+Login()
+while True:
+    VerificarDadosMaquina(idTorre)
+    time.sleep(10)

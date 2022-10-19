@@ -326,8 +326,6 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
         cnxn.rollback()
         print("Something went wrong: {}".format(err))
 
-
-Login()
 while True:
     VerificarDadosMaquina(idTorre)
     time.sleep(10)

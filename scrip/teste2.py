@@ -162,13 +162,13 @@ def Conexao():
             password=password
         )) 
 
-        cnx:pyodbc.Connection = pyodbc.connect(connection_string) 
+        cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
 
-        if cnx.is_connected():
-            db_info = cnx.get_server_info()
+        if cnxn.is_connected():
+            db_info = cnxn.get_server_info()
             print('conectado', db_info)
             global cursor
-            cursor = cnx.cursor()
+            cursor = cnxn.cursor()
             cursor.execute("select database();")
             linha = cursor.fetchone()
             print("Conectado ao banco de dados:", linha)
@@ -208,12 +208,12 @@ def teste():
             cursor.execute(sql, values)
 
             # Commit de mudanças no banco de dados
-            cnx.commit()
+            cnxn.commit()
 
             print("Leitura inserida no banco")
 
         except pyodbc.Error as err:
-            cnx.rollback()
+            cnxn.rollback()
             print("Something went wrong: {}".format(err))
 
             
@@ -321,12 +321,12 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
         cursor.execute(sql, values)
 
         # Commit de mudanças no banco de dados
-        cnx.commit()
+        cnxn.commit()
 
         print("Inserindo dados...")
 
     except pyodbc.Error as err:
-        cnx.rollback()
+        cnxn.rollback()
         print("Something went wrong: {}".format(err))
 
 

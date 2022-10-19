@@ -143,7 +143,7 @@ def Conexao():
         username = 'Monitoll'
         password = 'Grupo7@123'
         # definindo banco url 
-        cnx = connection_string = textwrap.dedent("""
+        connection_string = textwrap.dedent("""
         Driver={driver};
         Server={server};
         Database={database};

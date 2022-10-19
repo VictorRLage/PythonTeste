@@ -32,13 +32,11 @@ connection_string = textwrap.dedent("""
 # criando o objeto de conecxao
 cnxn:pyodbc.Connection = pyodbc.connect(connection_string)
 
-
 # criando um novo cursor 
 crsr: pyodbc.Cursor = cnxn.cursor()
 
 #criando execute vdd
 crsr.fast_executemany= True
-
 
 # select 
 select_sql = " SELECT * from Usuario where Email = ?"
@@ -53,7 +51,7 @@ crsr.execute(select_sql, records)
 crsr.commit()
 
 # print 
-print(select_sql)
+print(crsr.execute(select_sql, records))
 
 # close the connection
 cnxn.close()

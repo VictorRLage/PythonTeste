@@ -134,7 +134,7 @@ strip_RamAtual = str_RamAtual.strip('\tType: ')
 global strip2_RamAtual
 strip2_RamAtual = strip_RamAtual.strip('\n')
 
-def Conexao(user, senha, host, database):
+def Conexao():
         # variaveis de conexao
         driver ='{ODBC Driver 18 for SQL Server}'
         server_name = 'montioll'
@@ -328,8 +328,6 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
         print("Something went wrong: {}".format(err))
 
 
-
-Conexao('tecnico','urubu100','localhost','Monitoll')
 Login()
 while True:
     VerificarDadosMaquina(idTorre)

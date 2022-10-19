@@ -43,8 +43,7 @@ def ValidacaoLogin(u_email,u_senha):
 
 
 
-        queryFkEmpresa = ("SELECT fkEmpresa FROM Usuario "
-                    "WHERE Email = %s and Senha = %s;")
+        queryFkEmpresa = "SELECT fkEmpresa FROM Usuario WHERE Email = %s and Senha = %s"
         valuesFkEmpresa = (u_email, u_senha)
                     
         try:

@@ -47,7 +47,7 @@ select_sql = " SELECT * from Usuario where Email = %s"
 records = u_email = input('Seu e-mail: ')
     
 #executando insert 
-crsr.executemany(select_sql, records)
+crsr.execute(select_sql, (records))
 
 # commit 
 crsr.commit()

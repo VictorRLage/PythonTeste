@@ -135,14 +135,38 @@ global strip2_RamAtual
 strip2_RamAtual = strip_RamAtual.strip('\n')
 
 def Conexao(user, senha, host, database):
-        global cnx
-        cnx = pyodbc.connect(driver='{ODBC Driver 18 for SQL Server}',server_name = 'montioll',database_name='Monitoll', username='Monitoll' password='Grupo7@123')
+        # variaveis de conexao
+        driver ='{ODBC Driver 18 for SQL Server}'
+        server_name = 'montioll'
+        database_name = 'Monitoll'
+        server = '{server_name}.database.windows.net,1433'.format(servername=server_name)
+        username = 'Monitoll'
+        password = 'Grupo7@123'
+        # definindo banco url 
+        cnxn = connection_string = textwrap.dedent("""
+        Driver={driver};
+        Server={server};
+        Database={database};
+        Uid={username};
+        Pwd={password};
+        Encrypt=yes;
+        TrustedServerCertificate=no;
+        Connection Timeout=10;
+        """.format(
+            driver=driver,
+            server=server,
+            database=database_name,
+            username=username,
+            password=password
+        )) 
 
-        if cnx.is_connected():
-            db_info = cnx.get_server_info()
+        cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
+
+        if cnxn.is_connected():
+            db_info = cnxn.get_server_info()
             print('conectado', db_info)
             global cursor
-            cursor = cnx.cursor()
+            cursor = cnxn.cursor()
             cursor.execute("select database();")
             linha = cursor.fetchone()
             print("Conectado ao banco de dados:", linha)
@@ -182,12 +206,12 @@ def teste():
             cursor.execute(sql, values)
 
             # Commit de mudanças no banco de dados
-            cnx.commit()
+            cnxn.commit()
 
             print("Leitura inserida no banco")
 
         except pyodbc.Error as err:
-            cnx.rollback()
+            cnxn.rollback()
             print("Something went wrong: {}".format(err))
 
             
@@ -295,12 +319,12 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
         cursor.execute(sql, values)
 
         # Commit de mudanças no banco de dados
-        cnx.commit()
+        cnxn.commit()
 
         print("Inserindo dados...")
 
     except pyodbc.Error as err:
-        cnx.rollback()
+        cnxn.rollback()
         print("Something went wrong: {}".format(err))
 
 

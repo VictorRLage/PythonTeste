@@ -18,15 +18,15 @@ def Login():
 
 def ValidacaoLogin(u_email,u_senha):
 
-    values = (u_email,u_senha)
+    values = (u_email, u_senha)
 
     query = cursor.executemany('''
     SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
-    ''')
+    ''',values)
                     
     try:
         # Executando comando SQL
-        cursor.execute(query,values)
+        cursor.execute(query)
         print("Fazendo login...")
         usuario = cursor.fetchone()
         

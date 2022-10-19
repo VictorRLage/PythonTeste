@@ -139,7 +139,7 @@ def Conexao():
         driver ='{ODBC Driver 18 for SQL Server}'
         server_name = 'montioll'
         database_name = 'Monitoll'
-        server = '{server_name}.database.windows.net,1433'.format(servername=server_name)
+        server = '{server_name}.database.windows.net,1433'.format(server_name=server_name)
         username = 'Monitoll'
         password = 'Grupo7@123'
         # definindo banco url 

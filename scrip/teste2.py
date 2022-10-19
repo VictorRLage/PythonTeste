@@ -17,14 +17,14 @@ def Login():
     ValidacaoLogin(u_email,u_senha)
     
 
-def ValidacaoLogin(u_email,u_senha):
+def ValidacaoLogin(self, u_email, u_senha):
 
-    email = u_email 
-    senha = u_senha
+    self.u_email = u_email 
+    self.u_senha = u_senha
 
     query = cursor.executemany('''
     SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
-    ''',email, senha)
+    ''',u_email, u_senha)
                     
     try:
         # Executando comando SQL

@@ -18,7 +18,7 @@ def Login():
 
 def ValidacaoLogin(u_email,u_senha):
 
-    values = (u_email, u_senha)
+    values = [(u_email, u_senha)]
 
     query = cursor.executemany('''
     SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?

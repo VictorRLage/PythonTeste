@@ -18,9 +18,11 @@ def Login():
 
 def ValidacaoLogin(u_email,u_senha):
 
+    vetorLogin = [u_email,u_senha]
+
     query = cursor.executemany('''
     SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
-    ''',u_email, u_senha)
+    ''',vetorLogin)
                     
     try:
         # Executando comando SQL

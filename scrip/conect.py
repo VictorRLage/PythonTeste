@@ -43,7 +43,7 @@ records = u_email = input('Seu e-mail: ')
 
 # select 
 select_sql =  crsr.executemany('''
-" SELECT * FROM Usuario WHERE Email = ?"
+SELECT * FROM Usuario WHERE Email = ?
     ''',records)
 
 #executando insert 

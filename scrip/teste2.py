@@ -19,8 +19,6 @@ def Login():
 
 def ValidacaoLogin(u_email,u_senha):
 
-    cursor.fast_executemany= True
-
     query = cursor.executemany('''
     SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
     ''',u_email, u_senha)

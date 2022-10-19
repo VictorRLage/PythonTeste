@@ -38,17 +38,15 @@ crsr: pyodbc.Cursor = cnxn.cursor()
 #criando execute vdd
 crsr.fast_executemany= True
 
-# select 
-select_sql = " SELECT * from Usuario where Email = ?"
-
 #records 
 records = u_email = input('Seu e-mail: ')
-    
-#executando insert 
-crsr.execute(select_sql, records)
 
-# commit 
-crsr.commit()
+# select 
+select_sql =  cursor.execute('''
+" SELECT * from Usuario where Email = ?"
+    ''',records)
+#executando insert 
+# crsr.execute(select_sql, records)
 
 # print 
 print(crsr.fetchall())

@@ -51,7 +51,7 @@ crsr.execute(select_sql, records)
 crsr.commit()
 
 # print 
-print(crsr.execute(select_sql, records))
+print(crsr.fetchall())
 
 # close the connection
 cnxn.close()

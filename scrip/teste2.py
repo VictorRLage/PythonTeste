@@ -11,15 +11,15 @@ import pyodbc
 import textwrap
 
 
-def Login():
-    u_email = input('Seu e-mail: ')
+ # def Login():
+   # u_email = input('Seu e-mail: ')
     # u_senha = input('Sua senha: ')
-    ValidacaoLogin(u_email)
+    #ValidacaoLogin(u_email)
     
 
-def ValidacaoLogin(u_email):
+def ValidacaoLogin():
 
-    email = u_email 
+    email = u_email = input('Seu e-mail: ')
 
     query = cursor.execute('''
     SELECT Nome FROM Usuario WHERE Email = ?
@@ -27,7 +27,6 @@ def ValidacaoLogin(u_email):
                     
     try:
         # Executando comando SQL
-        cursor.execute(query)
         print("Fazendo login...")
         usuario = cursor.fetchone()
         
@@ -329,7 +328,8 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
 
 Conexao()
-Login()
+ValidacaoLogin()
+# Login()
 while True:
     VerificarDadosMaquina(idTorre)
     time.sleep(10)

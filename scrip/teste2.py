@@ -288,7 +288,7 @@ def VerificarDadosMaquina(idTorre):
     except pyodbc.Error as err:
         print("Something went wrong: {}".format(err))
     
-    if SerialIdBanco is not "":
+    if SerialIdBanco != "":
         print("A torre possui dados cadastrados")
         print("Cadastrando leituras...")
         InserindoLeitura()

@@ -19,6 +19,8 @@ def Login():
 
 def ValidacaoLogin(u_email,u_senha):
 
+    cursor.fast_executemany= True
+
     query = cursor.executemany('''
     SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
     ''',u_email, u_senha)
@@ -161,6 +163,15 @@ def Conexao():
         )) 
 
         cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
+
+        if cnxn.connect():
+            db_info = cnxn.get_server_info()
+            print('conectado', db_info)
+            global cursor
+            cursor = cnxn.cursor()
+            cursor.execute("select database();")
+            linha = cursor.fetchone()
+            print("Conectado ao banco de dados:", linha)
 
 
 def teste():

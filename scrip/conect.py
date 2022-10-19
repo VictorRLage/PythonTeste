@@ -42,10 +42,10 @@ crsr.fast_executemany= True
 records = u_email = input('Seu e-mail: ')
 
 # select 
-select_sql =  crsr.execute('''
-" SELECT * from Usuario where Email = ?"
+select_sql =  crsr.executemany('''
+" SELECT * FROM Usuario WHERE Email = ?"
     ''',records)
-    
+
 #executando insert 
 # crsr.execute(select_sql, records)
 

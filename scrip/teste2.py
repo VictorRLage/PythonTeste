@@ -44,8 +44,8 @@ def ValidacaoLogin():
         print('Olá,',str_usuario,'!')
 
         queryFkEmpresa = cursor.executemany('''
-        SELECT fkEmpresa FROM Usuario WHERE Email = ? and Senha = ?
-        ''',u_email, u_senha)
+        SELECT fkEmpresa FROM Usuario WHERE Email = ?
+        ''',u_email)
                     
         try:
             # Executando comando SQL

@@ -15,8 +15,7 @@ def Login():
     u_email = input('Seu e-mail: ')
     u_senha = input('Sua senha: ')
     ValidacaoLogin(u_email,u_senha)
-    global cursor
-    cursor = cnx.cursor()
+    
 
 
 def ValidacaoLogin(u_email,u_senha):
@@ -318,5 +317,8 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
         cnx.rollback()
         print("Something went wrong: {}".format(err))
 
+
+Login()
 while True:
+    VerificarDadosMaquina(idTorre)
     time.sleep(10)

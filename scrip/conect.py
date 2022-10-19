@@ -45,11 +45,12 @@ records = u_email = input('Seu e-mail: ')
 select_sql =  crsr.execute('''
 " SELECT * from Usuario where Email = ?"
     ''',records)
+    
 #executando insert 
 # crsr.execute(select_sql, records)
 
 # print 
-print(crsr.fetchall())
+print(select_sql.fetchall())
 
 # close the connection
 cnxn.close()

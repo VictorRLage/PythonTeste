@@ -19,7 +19,9 @@ def Login():
 
 def ValidacaoLogin(u_email,u_senha):
 
-    query = cursor.execute('''
+    cursor.fast_executemany= True
+
+    query = cursor.executemany('''
     SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
     ''',u_email, u_senha)
                     
@@ -44,13 +46,13 @@ def ValidacaoLogin(u_email,u_senha):
 
 
 
-        queryFkEmpresa = ("SELECT fkEmpresa FROM Usuario "
-                    "WHERE Email = %s and Senha = %s;")
-        valuesFkEmpresa = (u_email, u_senha)
+        queryFkEmpresa = cursor.executemany('''
+        SELECT fkEmpresa FROM Usuario WHERE Email = ? and Senha = ?
+        ''',u_email, u_senha)
                     
         try:
             # Executando comando SQL
-            cursor.execute(queryFkEmpresa, (valuesFkEmpresa))
+            cursor.execute(queryFkEmpresa)
             global fkEmpresa
             fkEmpresa = cursor.fetchone()
             global int_fkEmpresa
@@ -143,7 +145,7 @@ def Conexao():
         username = 'Monitoll'
         password = 'Grupo7@123'
         # definindo banco url 
-        connection_string = textwrap.dedent("""
+        connection_string = textwrap.dedent('''
         Driver={driver};
         Server={server};
         Database={database};
@@ -152,7 +154,7 @@ def Conexao():
         Encrypt=yes;
         TrustedServerCertificate=no;
         Connection Timeout=10;
-        """.format(
+        '''.format(
             driver=driver,
             server=server,
             database=database_name,

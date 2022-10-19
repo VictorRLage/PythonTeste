@@ -24,7 +24,7 @@ def ValidacaoLogin(self, u_email, u_senha):
 
     query = cursor.executemany('''
     SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
-    ''',u_email, u_senha)
+    ''',self.u_email, self.u_senha)
                     
     try:
         # Executando comando SQL

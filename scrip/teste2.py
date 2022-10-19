@@ -164,7 +164,7 @@ def Conexao():
 
         cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
 
-        if cnxn.connect():
+        if pyodbc.connect():
             db_info = cnxn.get_server_info()
             print('conectado', db_info)
             global cursor

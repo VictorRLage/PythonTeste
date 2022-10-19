@@ -319,5 +319,4 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
         print("Something went wrong: {}".format(err))
 
 while True:
-    VerificarDadosMaquina(idTorre)
     time.sleep(10)

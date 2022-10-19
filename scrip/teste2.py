@@ -300,9 +300,16 @@ def VerificarDadosMaquina(idTorre):
 
 def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
+    serialId = SerialID
+    os = OS
+    maquina = Maquina
+    processador = Processador
+    disco = Disco
+    ramSpeed = RamSpeed
+
     sql = cursor.executemany('''
     UPDATE Torre  SET SerialID = ?,  SO = ?, Maquina = ?, Processador = ?, Disco = ?, VelocidadeRam = ?,  fkEmpresa = ? WHERE idTorre = ?
-    ''',SerialID, OS, Maquina, Processador, Disco, RamSpeed, int_fkEmpresa, idTorre)
+    ''',serialId, os, maquina, processador, disco, ramSpeed, int_fkEmpresa, idTorre)
 
     try:
         # Commit de mudanças no banco de dados

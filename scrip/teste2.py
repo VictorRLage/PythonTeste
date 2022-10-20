@@ -10,20 +10,16 @@ import pyodbc
 import textwrap
 
 
-def Login():
-    u_email = input('Seu e-mail: ')
-    u_senha = input('Sua senha: ')
-    ValidacaoLogin(u_email,u_senha)
-    
+def ValidacaoLogin():
 
-
-def ValidacaoLogin(u_email,u_senha):
+    records = u_email = input('Seu e-mail: ')
+    records2 = u_senha = input('Sua senha: ')
 
     cursor.fast_executemany= True
 
     query = cursor.executemany('''
     SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
-    ''',u_email, u_senha)
+    ''',records, records2)
                     
     try:
         # Executando comando SQL

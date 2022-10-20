@@ -42,9 +42,9 @@ def ValidacaoLogin(u_email):
         str_usuario = convertTuple(usuario)
         print('Olá,',str_usuario,'!')
 
-        queryFkEmpresa = cursor.executemany('''
-        SELECT fkEmpresa FROM Usuario WHERE Email = ? and Senha = ?
-        ''',u_email, u_senha)
+        queryFkEmpresa = cursor.execute('''
+        SELECT fkEmpresa FROM Usuario WHERE Email = ? 
+        ''',u_email)
                     
         try:
             # Executando comando SQL

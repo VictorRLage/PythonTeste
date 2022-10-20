@@ -47,7 +47,7 @@ if (verificacao_mssql_str == ''):
 if (verificacao_unix_str == ''):
     verificacao_unix = True
 
-def Bibliotecas(psutil, pyodbc, numpy, textwrap3, driver, mssql, unix):
+def Bibliotecas(psutil, pyodbc, numpy, textwrap3):
         if psutil:
              subprocess.run('pip install psutil', shell=True)
         if pyodbc:

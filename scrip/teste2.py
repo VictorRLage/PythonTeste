@@ -48,7 +48,7 @@ def ValidacaoLogin(u_email):
                     
         try:
             # Executando comando SQL
-            cursor.execute(queryFkEmpresa)
+            cursor.execute(queryFkEmpresa, u_email)
             global fkEmpresa
             fkEmpresa = cursor.fetchone()
             global int_fkEmpresa

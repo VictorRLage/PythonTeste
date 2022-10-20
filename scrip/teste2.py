@@ -17,13 +17,13 @@ def ValidacaoLogin():
 
     cursor.fast_executemany= True
 
-    query = cursor.executemany('''
+    query1 = ('''
     SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
     ''',records, records2)
                     
     try:
         # Executando comando SQL
-        cursor.execute(query)
+        cursor.executemany(query1, records, records2)
         print("Fazendo login...")
         usuario = cursor.fetchone()
         
@@ -42,13 +42,13 @@ def ValidacaoLogin():
 
 
 
-        queryFkEmpresa = cursor.executemany('''
+        queryFkEmpresa = ('''
         SELECT fkEmpresa FROM Usuario WHERE Email = ? and Senha = ?
         ''',u_email, u_senha)
                     
         try:
             # Executando comando SQL
-            cursor.execute(queryFkEmpresa)
+            cursor.executemany(queryFkEmpresa, u_email, u_senha)
             global fkEmpresa
             fkEmpresa = cursor.fetchone()
             global int_fkEmpresa
@@ -64,7 +64,7 @@ def ValidacaoLogin():
 
     else:
         print('Email ou senha incoretos')
-        Login()
+        ValidacaoLogin()
 
 def EscolherTorres(idTorres):
     maquinas = numpy.asarray(idTorres)
@@ -74,11 +74,12 @@ def EscolherTorres(idTorres):
 
 def SelectIdTorres(fkEmpresa):
 
-    query = ("SELECT idTorre FROM Torre "
-                    "WHERE fkEmpresa = %s;")                    
+    query = ('''
+    SELECT idTorre FROM Torre WHERE fkEmpresa = ?
+    ''',fkEmpresa)                    
     try:
         # Executando comando SQL
-        cursor.execute(query, (fkEmpresa))
+        cursor.execute(query, fkEmpresa)
         idTorres = cursor.fetchall()
         print(idTorres)
         
@@ -191,17 +192,15 @@ def teste():
             var_leitura2 = var_leitura
         print(var_leitura2)
 
-        sql = ("INSERT INTO Leitura (Leitura, DataHora, fkTorre, fkComponente) VALUES (%s, %s, %s, %s)")
-        values = (var_leitura2, datahora, idTorre , y)
-
+        sql = ('''
+        INSERT INTO Leitura (Leitura, DataHora, fkTorre, fkComponente) VALUES (?, ?, ?, ?)
+        ''',var_leitura2, datahora, idTorre , y)
 
         try:
             # Executando comando SQL   
-            cursor.execute(sql, values)
-
+            cursor.executemany(sql, var_leitura2, datahora, idTorre , y)
             # Commit de mudanças no banco de dados
             cnxn.commit()
-
             print("Leitura inserida no banco")
 
         except pyodbc.Error as err:
@@ -212,12 +211,13 @@ def teste():
 
 def InserindoLeitura():
     # PREGAR fkCOMPONENTE
-            queryComponente = ("SELECT fkComponente FROM Torre_Componente " 
-                    "WHERE Torre_Componente.fkTorre = %s;")
+            queryComponente = ('''
+            SELECT fkComponente FROM Torre_Componente WHERE Torre_Componente.fkTorre = ?
+            ''', idTorre)
 
             try:
                 # Executing the SQL command
-                cursor.execute(queryComponente, (idTorre,))
+                cursor.execute(queryComponente, idTorre)
                 print("Pegando os componentes da torre...")
 
             except pyodbc.Error as err:
@@ -237,12 +237,13 @@ def InserindoLeitura():
                 print(y)
 
                 # PEGAR CODIGO COMPONENTE
-                queryCodigo = ("SELECT Codigo FROM Componente " 
-                    "WHERE Componente.idComponente = %s;")
+                queryCodigo = ('''
+                SELECT Codigo FROM Componente WHERE Componente.idComponente = ?
+                ''', y)
 
                 try:
                     # Executing the SQL command
-                    cursor.execute(queryCodigo, (y,))
+                    cursor.execute(queryCodigo, y)
                     print("Pegando codigo do componente ", y,'...')
 
                 except pyodbc.Error as err:
@@ -260,12 +261,13 @@ def InserindoLeitura():
 
 
                 # PREGAR NOME COMPONENTE
-                queryNome = ("SELECT Nome FROM Componente " 
-                    "WHERE Componente.idComponente = %s;")
+                queryNome = ('''
+                SELECT Nome FROM Componente WHERE Componente.idComponente = ?
+                ''',y)
 
                 try:
                     # Executing the SQL command
-                    cursor.execute(queryNome, (y,))
+                    cursor.execute(queryNome, y)
                     print("Pegando nome do componente", y)
 
                 except pyodbc.Error as err:
@@ -281,12 +283,13 @@ def InserindoLeitura():
 def VerificarDadosMaquina(idTorre):
 
 
-    query = ("SELECT SerialID FROM Torre "
-                    "WHERE idTorre = %s;")
+    query = ('''
+    SELECT SerialID FROM Torre WHERE idTorre = ?
+    ''',idTorre)
                     
     try:
         # Executando comando SQL
-        cursor.execute(query, (idTorre,))
+        cursor.execute(query, idTorre)
         print("Verificando dados da torre...")
         SerialIdBanco = cursor.fetchone()
 
@@ -305,13 +308,13 @@ def VerificarDadosMaquina(idTorre):
 
 def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
-    sql = ("UPDATE Torre  SET SerialID = %s,  SO = %s, Maquina = %s, Processador = %s, Disco = %s, VelocidadeRam = %s,  fkEmpresa = %s WHERE idTorre = %s")
-    values = (SerialID, OS, Maquina, Processador, Disco, RamSpeed, int_fkEmpresa, idTorre)
+    sql = ('''
+    UPDATE Torre  SET SerialID = ?,  SO = ?, Maquina = ?, Processador = ?, Disco = ?, VelocidadeRam = ?,  fkEmpresa = ? WHERE idTorre = ?
+    ''', SerialID, OS, Maquina, Processador, Disco, RamSpeed, int_fkEmpresa, idTorre)
 
     try:
     # Executando comando SQL
-        cursor.execute(sql, values)
-
+        cursor.executemany(sql, SerialID, OS, Maquina, Processador, Disco, RamSpeed, int_fkEmpresa, idTorre)
         # Commit de mudanças no banco de dados
         cnxn.commit()
 
@@ -324,7 +327,6 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
 
 Conexao()
-
 while True:
     VerificarDadosMaquina(idTorre)
     time.sleep(10)

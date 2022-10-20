@@ -160,14 +160,11 @@ def Conexao():
 
         cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
 
-        if cnxn.connect():
-            db_info = cnxn.get_server_info()
-            print('conectado', db_info)
-            global cursor
-            cursor = cnxn.cursor()
-            cursor.execute("select database();")
-            linha = cursor.fetchone()
-            print("Conectado ao banco de dados:", linha)
+        
+        global cursor
+        cursor = cnxn.cursor()
+        linha = cursor.fetchone()
+        print("Conectado ao banco de dados:", linha)
 
 
 def teste():
@@ -328,7 +325,7 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
 
 Conexao()
-Login()
+
 while True:
     VerificarDadosMaquina(idTorre)
     time.sleep(10)

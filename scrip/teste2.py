@@ -39,7 +39,7 @@ def Conexao():
         cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
 
         global crsr
-        crsr: pyodbc.Cursor = cnxn.cursor()
+        crsr = cnxn.cursor()
         print("Conectado ao banco de dados:")
 
 

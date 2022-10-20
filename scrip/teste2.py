@@ -285,6 +285,7 @@ def VerificarDadosMaquina(idTorre):
                     
     try:
         # Executando comando SQL
+        cursor.execute(query, idtorre)
         print("entrou no trai")
         cursor.commit()
         print("Verificando dados da torre...")

@@ -198,7 +198,7 @@ def teste():
         try:
             # Executando comando SQL   
             # Commit de mudanças no banco de dado
-            cnxn.commit()
+            cursor.commit()
             print("Leitura inserida no banco")
 
         except pyodbc.Error as err:
@@ -292,7 +292,7 @@ def VerificarDadosMaquina(idTorre):
     except pyodbc.Error as err:
         print("Something went wrong: {}".format(err))
     
-    if SerialIdBanco != "":
+    if SerialIdBanco[0] is not None:
         print("A torre possui dados cadastrados")
         print("Cadastrando leituras...")
         InserindoLeitura()

@@ -14,9 +14,6 @@ def ValidacaoLogin():
 
     records = u_email = input('Seu e-mail: ')
     records2 = u_senha = input('Sua senha: ')
-    global idTorres
-    idTorres = input('Qual é esta maquina?')
-
 
     cursor.fast_executemany= True
 
@@ -328,7 +325,7 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
         print("Something went wrong: {}".format(err))
 
 
-
+ValidacaoLogin()
 Conexao()
 while True:
     VerificarDadosMaquina(idTorre)

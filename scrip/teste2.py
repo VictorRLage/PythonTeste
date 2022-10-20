@@ -48,13 +48,13 @@ def ValidacaoLogin():
     records = u_email = input('Seu e-mail: ')
     records2 = u_senha = input('Sua senha: ')
 
-    query1 = ('''
+    query1 = crsr.executemany('''
     SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
     ''',records, records2)
                     
     try:
         # Executando comando SQL
-        crsr.executemany(query1)
+        query1()
         print("Fazendo login...")
         usuario = crsr.fetchone()
         

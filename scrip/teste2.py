@@ -1,4 +1,3 @@
-import email
 from statistics import mean
 import subprocess
 import time
@@ -11,22 +10,23 @@ import pyodbc
 import textwrap
 
 
- # def Login():
-   # u_email = input('Seu e-mail: ')
-    # u_senha = input('Sua senha: ')
-    #ValidacaoLogin(u_email)
+def Login():
+    u_email = input('Seu e-mail: ')
+   # u_senha = input('Sua senha: ')
+    ValidacaoLogin(u_email)
     
 
-def ValidacaoLogin():
+def ValidacaoLogin(u_email):
 
-    email = u_email = input('Seu e-mail: ')
+    vetorLogin = u_email
 
     query = cursor.execute('''
-    SELECT Nome FROM Usuario WHERE Email = ?
-    ''',email)
+    SELECT Nome FROM Usuario WHERE Email = ? 
+    ''',vetorLogin)
                     
     try:
         # Executando comando SQL
+        cursor.execute(query, vetorLogin)
         print("Fazendo login...")
         usuario = cursor.fetchone()
         
@@ -43,12 +43,13 @@ def ValidacaoLogin():
         str_usuario = convertTuple(usuario)
         print('Olá,',str_usuario,'!')
 
-        queryFkEmpresa = cursor.execute('''
-        SELECT fkEmpresa FROM Usuario WHERE Email = ?
-        ''',u_email)
+        queryFkEmpresa = cursor.executemany('''
+        SELECT fkEmpresa FROM Usuario WHERE Email = ? and Senha = ?
+        ''',u_email, u_senha)
                     
         try:
             # Executando comando SQL
+            cursor.execute(queryFkEmpresa)
             global fkEmpresa
             fkEmpresa = cursor.fetchone()
             global int_fkEmpresa
@@ -74,11 +75,14 @@ def EscolherTorres(idTorres):
 
 def SelectIdTorres(fkEmpresa):
 
+    fkempresa = fkEmpresa
+
     query = cursor.execute('''
     SELECT idTorre FROM Torre WHERE fkEmpresa = ?
-    ''', fkEmpresa)                    
+    ''', fkempresa)                    
     try:
         # Executando comando SQL
+        cursor.execute(query, fkempresa)
         idTorres = cursor.fetchall()
         print(idTorres)
         
@@ -190,9 +194,19 @@ def teste():
             var_leitura2 = var_leitura
         print(var_leitura2)
 
-        cursor.execute('''
+        sql = cursor.executemany('''
         INSERT INTO Leitura (Leitura, DataHora, fkTorre, fkComponente) VALUES (?, ?, ?, ?)
         ''', var_leitura2, datahora, idTorre, y)
+
+        try:
+            # Executando comando SQL   
+            cursor.execute(sql,var_leitura2, datahora, idTorre, y)
+            # Commit de mudanças no banco de dado
+            print("Leitura inserida no banco")
+
+        except pyodbc.Error as err:
+            cnxn.rollback()
+            print("Something went wrong: {}".format(err))
 
             
 
@@ -204,6 +218,7 @@ def InserindoLeitura():
 
             try:
                 # Executing the SQL command
+                cursor.execute(queryComponente,idTorre)
                 print("Pegando os componentes da torre...")
 
             except pyodbc.Error as err:
@@ -229,6 +244,7 @@ def InserindoLeitura():
 
                 try:
                     # Executing the SQL command
+                    cursor.execute(queryCodigo,y)
                     print("Pegando codigo do componente ", y,'...')
 
                 except pyodbc.Error as err:
@@ -252,6 +268,7 @@ def InserindoLeitura():
 
                 try:
                     # Executing the SQL command
+                    cursor.execute(queryNome,y)
                     print("Pegando nome do componente", y)
 
                 except pyodbc.Error as err:
@@ -266,20 +283,22 @@ def InserindoLeitura():
 
 def VerificarDadosMaquina(idTorre):
 
+    idtorre = idTorre
 
-    query = cursor.execute('''
+    query = cursor.executemany('''
     SELECT SerialID FROM Torre WHERE idTorre = ?
-    ''', idTorre)
+    ''', idtorre)
                     
     try:
         # Executando comando SQL
+        cursor.execute(query, idtorre)
         print("Verificando dados da torre...")
         SerialIdBanco = cursor.fetchone()
 
     except pyodbc.Error as err:
         print("Something went wrong: {}".format(err))
     
-    if SerialIdBanco != "":
+    if SerialIdBanco[0] is not None:
         print("A torre possui dados cadastrados")
         print("Cadastrando leituras...")
         InserindoLeitura()
@@ -291,21 +310,24 @@ def VerificarDadosMaquina(idTorre):
 
 def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
-    serialId = SerialID
+    serialid = SerialID
     os = OS
     maquina = Maquina
     processador = Processador
-    disco = Disco
+    disco = Disco 
     ramSpeed = RamSpeed
+
+
+
 
     sql = cursor.executemany('''
     UPDATE Torre  SET SerialID = ?,  SO = ?, Maquina = ?, Processador = ?, Disco = ?, VelocidadeRam = ?,  fkEmpresa = ? WHERE idTorre = ?
-    ''',serialId, os, maquina, processador, disco, ramSpeed, int_fkEmpresa, idTorre)
+    ''',serialid, os, maquina, processador, disco, ramSpeed, int_fkEmpresa, idTorre)
 
     try:
+    # Executando comando SQL
+        cursor.executemany(sql, serialid, os, maquina, processador, disco, ramSpeed, int_fkEmpresa, idTorre)
         # Commit de mudanças no banco de dados
-        cnxn.commit()
-
         print("Inserindo dados...")
 
     except pyodbc.Error as err:
@@ -315,8 +337,7 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
 
 Conexao()
-ValidacaoLogin()
-# Login()
+Login()
 while True:
     VerificarDadosMaquina(idTorre)
     time.sleep(10)

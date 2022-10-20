@@ -186,13 +186,12 @@ def teste():
             var_leitura2 = var_leitura
         print(var_leitura2)
 
-        sql = ('''
-        INSERT INTO Leitura (Leitura, DataHora, fkTorre, fkComponente) VALUES (?, ?, ?, ?)
-        ''',var_leitura2, datahora, idTorre , y)
-
+        
         try:
             # Executando comando SQL   
-            crsr.executemany(sql, var_leitura2, datahora, idTorre , y)
+            crsr.execute('''
+        INSERT INTO Leitura (Leitura, DataHora, fkTorre, fkComponente) VALUES (?, ?, ?, ?)
+        ''',var_leitura2, datahora, idTorre , y)
             # Commit de mudanças no banco de dados
             cnxn.commit()
             print("Leitura inserida no banco")
@@ -205,13 +204,13 @@ def teste():
 
 def InserindoLeitura():
     # PREGAR fkCOMPONENTE
-            queryComponente = ('''
-            SELECT fkComponente FROM Torre_Componente WHERE Torre_Componente.fkTorre = ?
-            ''', idTorre)
+            
 
             try:
+                crsr.execute('''
+            SELECT fkComponente FROM Torre_Componente WHERE Torre_Componente.fkTorre = ?
+            ''', idTorre)
                 # Executing the SQL command
-                crsr.execute(queryComponente, idTorre)
                 print("Pegando os componentes da torre...")
 
             except pyodbc.Error as err:
@@ -231,13 +230,12 @@ def InserindoLeitura():
                 print(y)
 
                 # PEGAR CODIGO COMPONENTE
-                queryCodigo = ('''
+                
+                try:
+                    crsr.execute('''
                 SELECT Codigo FROM Componente WHERE Componente.idComponente = ?
                 ''', y)
-
-                try:
                     # Executing the SQL command
-                    crsr.execute(queryCodigo, y)
                     print("Pegando codigo do componente ", y,'...')
 
                 except pyodbc.Error as err:

@@ -26,7 +26,6 @@ def ValidacaoLogin(u_email):
                     
     try:
         # Executando comando SQL
-        cursor.execute(query, vetorLogin)
         print("Fazendo login...")
         usuario = cursor.fetchone()
         

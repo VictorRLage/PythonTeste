@@ -48,7 +48,7 @@ def ValidacaoLogin():
     records = u_email = input('Seu e-mail: ')
     records2 = u_senha = input('Sua senha: ')
 
-    query1 = crsr.executemany('''
+    query1 = crsr.execute('''
     SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
     ''',records, records2)
                     

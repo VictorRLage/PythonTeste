@@ -278,7 +278,7 @@ def VerificarDadosMaquina(idTorre):
 
     idtorre = idTorre
 
-    query = cursor.executemany('''
+    query = cursor.execute('''
     SELECT SerialID FROM Torre WHERE idTorre = ?
     ''', idtorre)
                     

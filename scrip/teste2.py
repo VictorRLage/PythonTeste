@@ -15,8 +15,6 @@ def ValidacaoLogin():
     records = u_email = input('Seu e-mail: ')
     records2 = u_senha = input('Sua senha: ')
 
-    cursor.fast_executemany= True
-
     query1 = ('''
     SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
     ''',records, records2)

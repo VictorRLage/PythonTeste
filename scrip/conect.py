@@ -1,6 +1,7 @@
 import pyodbc
 import textwrap
 import psutil
+import datetime
 
 #Definindo o driver
 driver = '{ODBC Driver 18 for SQL Server}'
@@ -40,11 +41,11 @@ crsr: pyodbc.Cursor = cnxn.cursor()
 
 #records 
 records = u_email = input('Seu e-mail: ')
-
+records2 = u_senha = input('Sua senha: ')
 # select 
 select_sql =  crsr.execute('''
-SELECT * FROM Usuario WHERE Email = ?
-    ''',records)
+SELECT * FROM Usuario WHERE Email = ? AND Senha = ?
+    ''',records, records2)
 
 #executando insert 
 # crsr.execute(select_sql, records)

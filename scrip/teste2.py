@@ -285,6 +285,7 @@ def VerificarDadosMaquina(idTorre):
                     
     try:
         # Executando comando SQL
+        cnxn.commit()
         print("Verificando dados da torre...")
         SerialIdBanco = cursor.fetchone()
 
@@ -301,30 +302,30 @@ def VerificarDadosMaquina(idTorre):
     
 
 
-def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
+# # def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
-    serialid = SerialID
-    os = OS
-    maquina = Maquina
-    processador = Processador
-    disco = Disco 
-    ramSpeed = RamSpeed
+#   #  serialid = SerialID
+#     os = OS
+#     maquina = Maquina
+#     processador = Processador
+#     disco = Disco 
+#     ramSpeed = RamSpeed
 
 
-    sql = cursor.executemany('''
-    UPDATE Torre  SET SerialID = ?,  SO = ?, Maquina = ?, Processador = ?, Disco = ?, VelocidadeRam = ?,  fkEmpresa = ? WHERE idTorre = ?
-    ''',serialid, os, maquina, processador, disco, ramSpeed, int_fkEmpresa, idTorre)
+#     sql = cursor.executemany('''
+#     UPDATE Torre  SET SerialID = ?,  SO = ?, Maquina = ?, Processador = ?, Disco = ?, VelocidadeRam = ?,  fkEmpresa = ? WHERE idTorre = ?
+#     ''',serialid, os, maquina, processador, disco, ramSpeed, int_fkEmpresa, idTorre)
 
-    try:
-    # Executando comando SQL
-        sql.executemany(sql, serialid, os, maquina, processador, disco, ramSpeed, int_fkEmpresa, idTorre)
-        # Commit de mudanças no banco de dados
-        cnxn.commit()
-        print("Inserindo dados...")
+#     try:
+#     # Executando comando SQL
+#         sql.executemany(sql, serialid, os, maquina, processador, disco, ramSpeed, int_fkEmpresa, idTorre)
+#         # Commit de mudanças no banco de dados
+#         cnxn.commit()
+#         print("Inserindo dados...")
 
-    except pyodbc.Error as err:
-        cnxn.rollback()
-        print("Something went wrong: {}".format(err))
+#     except pyodbc.Error as err:
+#         cnxn.rollback()
+#         print("Something went wrong: {}".format(err))
 
 
 

@@ -48,7 +48,6 @@ def ValidacaoLogin(u_email):
                     
         try:
             # Executando comando SQL
-            cursor.execute(queryFkEmpresa, vetorLogin)
             global fkEmpresa
             fkEmpresa = cursor.fetchone()
             global int_fkEmpresa

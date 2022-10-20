@@ -163,8 +163,7 @@ def Conexao():
         
         global cursor
         cursor = cnxn.cursor()
-        linha = cursor.fetchone()
-        print("Conectado ao banco de dados:", linha)
+        print("Conectado ao banco de dados:")
 
 
 def teste():

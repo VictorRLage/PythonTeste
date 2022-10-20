@@ -101,12 +101,11 @@ def EscolherTorres(idTorres):
 
 def SelectIdTorres(fkEmpresa):
 
-    query = ('''
+    try:
+        crsr.execute('''
     SELECT idTorre FROM Torre WHERE fkEmpresa = ?
     ''',fkEmpresa)                    
-    try:
-        # Executando comando SQL
-        crsr.execute(query, fkEmpresa)
+        # Executando comando SQL)
         idTorres = crsr.fetchall()
         print(idTorres)
         

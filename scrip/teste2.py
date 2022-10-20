@@ -9,6 +9,39 @@ import operator
 import pyodbc 
 import textwrap
 
+def Conexao():
+
+        # variaveis de conexao
+        driver ='{ODBC Driver 18 for SQL Server}'
+        server_name = 'montioll'
+        database_name = 'Monitoll'
+        server = '{server_name}.database.windows.net,1433'.format(server_name=server_name)
+        username = 'Monitoll'
+        password = 'Grupo7@123'
+        # definindo banco url 
+        connection_string = textwrap.dedent('''
+        Driver={driver};
+        Server={server};
+        Database={database};
+        Uid={username};
+        Pwd={password};
+        Encrypt=yes;
+        TrustedServerCertificate=no;
+        Connection Timeout=10;
+        '''.format(
+            driver=driver,
+            server=server,
+            database=database_name,
+            username=username,
+            password=password
+        )) 
+
+        cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
+
+        global crsr
+        crsr: pyodbc.Cursor = cnxn.cursor()
+        print("Conectado ao banco de dados:")
+
 
 def ValidacaoLogin():
 
@@ -21,9 +54,9 @@ def ValidacaoLogin():
                     
     try:
         # Executando comando SQL
-        cnxn.executemany(query1, records, records2)
+        crsr.executemany(query1, records, records2)
         print("Fazendo login...")
-        usuario = cursor.fetchone()
+        usuario = crsr.fetchone()
         
 
     except pyodbc.Error as err:
@@ -46,9 +79,9 @@ def ValidacaoLogin():
                     
         try:
             # Executando comando SQL
-            cursor.executemany(queryFkEmpresa, u_email, u_senha)
+            crsr.executemany(queryFkEmpresa, u_email, u_senha)
             global fkEmpresa
-            fkEmpresa = cursor.fetchone()
+            fkEmpresa = crsr.fetchone()
             global int_fkEmpresa
             int_fkEmpresa = sum(fkEmpresa)
             print('fkEmpresa:', fkEmpresa)
@@ -77,8 +110,8 @@ def SelectIdTorres(fkEmpresa):
     ''',fkEmpresa)                    
     try:
         # Executando comando SQL
-        cursor.execute(query, fkEmpresa)
-        idTorres = cursor.fetchall()
+        crsr.execute(query, fkEmpresa)
+        idTorres = crsr.fetchall()
         print(idTorres)
         
 
@@ -131,40 +164,6 @@ strip_RamAtual = str_RamAtual.strip('\tType: ')
 global strip2_RamAtual
 strip2_RamAtual = strip_RamAtual.strip('\n')
 
-def Conexao():
-
-
-        # variaveis de conexao
-        driver ='{ODBC Driver 18 for SQL Server}'
-        server_name = 'montioll'
-        database_name = 'Monitoll'
-        server = '{server_name}.database.windows.net,1433'.format(server_name=server_name)
-        username = 'Monitoll'
-        password = 'Grupo7@123'
-        # definindo banco url 
-        connection_string = textwrap.dedent('''
-        Driver={driver};
-        Server={server};
-        Database={database};
-        Uid={username};
-        Pwd={password};
-        Encrypt=yes;
-        TrustedServerCertificate=no;
-        Connection Timeout=10;
-        '''.format(
-            driver=driver,
-            server=server,
-            database=database_name,
-            username=username,
-            password=password
-        )) 
-
-        cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
-
-        global cursor
-        cursor = cnxn.cursor()
-        
-        print("Conectado ao banco de dados:")
 
 
 def teste():
@@ -198,7 +197,7 @@ def teste():
 
         try:
             # Executando comando SQL   
-            cursor.executemany(sql, var_leitura2, datahora, idTorre , y)
+            crsr.executemany(sql, var_leitura2, datahora, idTorre , y)
             # Commit de mudanças no banco de dados
             cnxn.commit()
             print("Leitura inserida no banco")
@@ -217,14 +216,14 @@ def InserindoLeitura():
 
             try:
                 # Executing the SQL command
-                cursor.execute(queryComponente, idTorre)
+                crsr.execute(queryComponente, idTorre)
                 print("Pegando os componentes da torre...")
 
             except pyodbc.Error as err:
                 print("Something went wrong: {}".format(err))
                 print('teste exept')
 
-            fkComponente= cursor.fetchall()
+            fkComponente= crsr.fetchall()
             print(fkComponente)
             vet_fkComponente = numpy.asarray(fkComponente)
             print("Componentes da maquina:", vet_fkComponente)
@@ -243,13 +242,13 @@ def InserindoLeitura():
 
                 try:
                     # Executing the SQL command
-                    cursor.execute(queryCodigo, y)
+                    crsr.execute(queryCodigo, y)
                     print("Pegando codigo do componente ", y,'...')
 
                 except pyodbc.Error as err:
                     print("Something went wrong: {}".format(err))
 
-                Codigo = cursor.fetchone()
+                Codigo = crsr.fetchone()
                 print("Codigo do componente ",y,":", Codigo)
 
                 def convertTuple(tup):
@@ -267,13 +266,13 @@ def InserindoLeitura():
 
                 try:
                     # Executing the SQL command
-                    cursor.execute(queryNome, y)
+                    crsr.execute(queryNome, y)
                     print("Pegando nome do componente", y)
 
                 except pyodbc.Error as err:
                     print("Something went wrong: {}".format(err))
 
-                Nome= cursor.fetchone()
+                Nome= crsr.fetchone()
                 global strNome
                 strNome = convertTuple(Nome)
                 print("Nome componente ",y,":", strNome)
@@ -289,9 +288,9 @@ def VerificarDadosMaquina(idTorre):
                     
     try:
         # Executando comando SQL
-        cursor.execute(query, idTorre)
+        crsr.execute(query, idTorre)
         print("Verificando dados da torre...")
-        SerialIdBanco = cursor.fetchone()
+        SerialIdBanco = crsr.fetchone()
 
     except pyodbc.Error as err:
         print("Something went wrong: {}".format(err))
@@ -314,7 +313,7 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
     try:
     # Executando comando SQL
-        cursor.executemany(sql, SerialID, OS, Maquina, Processador, Disco, RamSpeed, int_fkEmpresa, idTorre)
+        crsr.executemany(sql, SerialID, OS, Maquina, Processador, Disco, RamSpeed, int_fkEmpresa, idTorre)
         # Commit de mudanças no banco de dados
         cnxn.commit()
 
@@ -324,9 +323,8 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
         cnxn.rollback()
         print("Something went wrong: {}".format(err))
 
-
-ValidacaoLogin()
 Conexao()
+ValidacaoLogin()
 while True:
     VerificarDadosMaquina(idTorre)
     time.sleep(10)

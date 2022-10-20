@@ -133,7 +133,6 @@ strip2_RamAtual = strip_RamAtual.strip('\n')
 
 def Conexao():
 
-        global cnxn
         # variaveis de conexao
         driver ='{ODBC Driver 18 for SQL Server}'
         server_name = 'montioll'

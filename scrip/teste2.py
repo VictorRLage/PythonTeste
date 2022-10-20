@@ -44,11 +44,11 @@ def ValidacaoLogin(u_email):
 
         queryFkEmpresa = cursor.execute('''
         SELECT fkEmpresa FROM Usuario WHERE Email = ? 
-        ''',u_email)
+        ''',vetorLogin)
                     
         try:
             # Executando comando SQL
-            cursor.execute(queryFkEmpresa, u_email)
+            cursor.execute(queryFkEmpresa, vetorLogin)
             global fkEmpresa
             fkEmpresa = cursor.fetchone()
             global int_fkEmpresa

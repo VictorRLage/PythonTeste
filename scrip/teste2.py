@@ -285,7 +285,7 @@ def VerificarDadosMaquina(idTorre):
                     
     try:
         # Executando comando SQL
-        cnxn.commit()
+        cursor.commit()
         print("Verificando dados da torre...")
         SerialIdBanco = cursor.fetchone()
 

@@ -311,14 +311,13 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
     ramSpeed = RamSpeed
 
 
-
-
     sql = cursor.executemany('''
     UPDATE Torre  SET SerialID = ?,  SO = ?, Maquina = ?, Processador = ?, Disco = ?, VelocidadeRam = ?,  fkEmpresa = ? WHERE idTorre = ?
     ''',serialid, os, maquina, processador, disco, ramSpeed, int_fkEmpresa, idTorre)
 
     try:
     # Executando comando SQL
+        sql.executemany(sql, serialid, os, maquina, processador, disco, ramSpeed, int_fkEmpresa, idTorre)
         # Commit de mudanças no banco de dados
         cnxn.commit()
         print("Inserindo dados...")

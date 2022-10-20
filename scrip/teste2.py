@@ -48,11 +48,11 @@ def ValidacaoLogin():
     records = u_email = input('Seu e-mail: ')
     records2 = u_senha = input('Sua senha: ')
 
-    crsr.execute('''
-    SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
-    ''',records, records2)
                     
     try:
+        crsr.execute('''
+    SELECT Nome FROM Usuario WHERE Email = ? and Senha = ?
+    ''',records, records2)
         # Executando comando SQL
         print("Fazendo login...")
         usuario = crsr.fetchone()

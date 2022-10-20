@@ -198,6 +198,7 @@ def teste():
         try:
             # Executando comando SQL   
             # Commit de mudanças no banco de dado
+            cnxn.commit()
             print("Leitura inserida no banco")
 
         except pyodbc.Error as err:
@@ -319,6 +320,7 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
     try:
     # Executando comando SQL
         # Commit de mudanças no banco de dados
+        cnxn.commit()
         print("Inserindo dados...")
 
     except pyodbc.Error as err:

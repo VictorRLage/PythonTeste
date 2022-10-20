@@ -1,5 +1,6 @@
 import os
 import subprocess
+import datetime
 
 # Bloco verifcar bibliotecas instaladas
 verificacao_psutil_byte = subprocess.check_output('''pip list | grep 'psutil' | uniq''', shell=True)

@@ -1,5 +1,6 @@
 import pyodbc
 import textwrap
+import psutil
 
 #Definindo o driver
 driver = '{ODBC Driver 18 for SQL Server}'

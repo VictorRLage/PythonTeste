@@ -193,7 +193,7 @@ def teste():
         INSERT INTO Leitura (Leitura, DataHora, fkTorre, fkComponente) VALUES (?, ?, ?, ?)
         ''',var_leitura2, datahora, idTorre , y)
             # Commit de mudanças no banco de dados
-            cnxn.commit()
+            crsr.commit()
             print("Leitura inserida no banco")
 
         except pyodbc.Error as err:
@@ -306,12 +306,12 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
     ''', SerialID, OS, Maquina, Processador, Disco, RamSpeed, int_fkEmpresa, idTorre)
     # Executando comando SQL
         # Commit de mudanças no banco de dados
-        cnxn.commit()
+        crsr.commit()
 
         print("Inserindo dados...")
 
     except pyodbc.Error as err:
-        cnxn.rollback()
+        crsr.rollback()
         print("Something went wrong: {}".format(err))
 
 Conexao()

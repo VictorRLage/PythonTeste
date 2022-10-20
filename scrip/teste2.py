@@ -70,15 +70,12 @@ def ValidacaoLogin():
         str_usuario = convertTuple(usuario)
         print('Olá,',str_usuario,'!')
 
-
-
-        queryFkEmpresa = ('''
-        SELECT fkEmpresa FROM Usuario WHERE Email = ? and Senha = ?
-        ''',u_email, u_senha)
                     
         try:
+            crsr.execute('''
+        SELECT fkEmpresa FROM Usuario WHERE Email = ? and Senha = ?
+        ''',u_email, u_senha)
             # Executando comando SQL
-            crsr.executemany(queryFkEmpresa, u_email, u_senha)
             global fkEmpresa
             fkEmpresa = crsr.fetchone()
             global int_fkEmpresa

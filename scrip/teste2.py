@@ -288,10 +288,11 @@ def VerificarDadosMaquina(idTorre):
         cursor.commit()
         print("Verificando dados da torre...")
         SerialIdBanco = cursor.fetchone()
+        print(SerialIdBanco)
 
     except pyodbc.Error as err:
         print("Something went wrong: {}".format(err))
-    print(SerialIdBanco[0])
+
     if SerialIdBanco[0] != '':
         print("A torre possui dados cadastrados")
         print("Cadastrando leituras...")

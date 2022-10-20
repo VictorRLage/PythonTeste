@@ -193,17 +193,6 @@ def teste():
         sql = cursor.execute('''
         INSERT INTO Leitura (Leitura, DataHora, fkTorre, fkComponente) VALUES (?, ?, ?, ?)
         ''', var_leitura2, datahora, idTorre, y)
-
-
-        try:
-            # Commit de mudanças no banco de dados
-            cnxn.commit()
-            print("Leitura inserida no banco")
-
-        except pyodbc.Error as err:
-            cnxn.rollback()
-            print("Something went wrong: {}".format(err))
-
             
 
 def InserindoLeitura():

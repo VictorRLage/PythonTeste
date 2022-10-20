@@ -277,15 +277,13 @@ def InserindoLeitura():
 
 def VerificarDadosMaquina(idTorre):
 
-    idtorre = idTorre
-
     query = cursor.execute('''
     SELECT SerialID FROM Torre WHERE idTorre = ?
-    ''', idtorre)
+    ''', idTorre)
                     
     try:
         # Executando comando SQL
-        cursor.execute(query, idtorre)
+        cursor.execute(query, idTorre)
         print("entrou no trai")
         cursor.commit()
         print("Verificando dados da torre...")

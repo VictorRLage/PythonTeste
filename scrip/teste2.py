@@ -21,7 +21,7 @@ def ValidacaoLogin():
                     
     try:
         # Executando comando SQL
-        cursor.executemany(query1, records, records2)
+        cnxn.executemany(query1, records, records2)
         print("Fazendo login...")
         usuario = cursor.fetchone()
         
@@ -159,11 +159,10 @@ def Conexao():
             password=password
         )) 
 
-        global cursor
-        cursor = cnxn.cursor()
-        
         cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
 
+        global cursor
+        cursor = cnxn.cursor()
         
         print("Conectado ao banco de dados:")
 

@@ -80,7 +80,6 @@ def SelectIdTorres(fkEmpresa):
     ''', fkempresa)                    
     try:
         # Executando comando SQL
-        cursor.execute(query, fkempresa)
         idTorres = cursor.fetchall()
         print(idTorres)
         
@@ -198,7 +197,6 @@ def teste():
 
         try:
             # Executando comando SQL   
-            cursor.execute(sql,var_leitura2, datahora, idTorre, y)
             # Commit de mudanças no banco de dado
             print("Leitura inserida no banco")
 
@@ -216,7 +214,6 @@ def InserindoLeitura():
 
             try:
                 # Executing the SQL command
-                cursor.execute(queryComponente,idTorre)
                 print("Pegando os componentes da torre...")
 
             except pyodbc.Error as err:
@@ -242,7 +239,6 @@ def InserindoLeitura():
 
                 try:
                     # Executing the SQL command
-                    cursor.execute(queryCodigo,y)
                     print("Pegando codigo do componente ", y,'...')
 
                 except pyodbc.Error as err:
@@ -266,7 +262,6 @@ def InserindoLeitura():
 
                 try:
                     # Executing the SQL command
-                    cursor.execute(queryNome,y)
                     print("Pegando nome do componente", y)
 
                 except pyodbc.Error as err:
@@ -289,7 +284,6 @@ def VerificarDadosMaquina(idTorre):
                     
     try:
         # Executando comando SQL
-        cursor.execute(query, idtorre)
         print("Verificando dados da torre...")
         SerialIdBanco = cursor.fetchone()
 
@@ -324,7 +318,6 @@ def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
     try:
     # Executando comando SQL
-        cursor.executemany(sql, serialid, os, maquina, processador, disco, ramSpeed, int_fkEmpresa, idTorre)
         # Commit de mudanças no banco de dados
         print("Inserindo dados...")
 

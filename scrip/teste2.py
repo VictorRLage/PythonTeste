@@ -54,7 +54,6 @@ def ValidacaoLogin():
                     
     try:
         # Executando comando SQL
-        query1()
         print("Fazendo login...")
         usuario = crsr.fetchone()
         

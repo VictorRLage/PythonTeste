@@ -158,9 +158,9 @@ def Conexao():
             username=username,
             password=password
         ))
-        crsr: pyodbc.Cursor = cnxn.cursor()
+        global cursor
+        cursor = cnx.cursor()
         
-
         # criando o objeto de conecxao
         cnxn:pyodbc.Connection = pyodbc.connect(connection_string)    
 

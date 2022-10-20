@@ -133,6 +133,7 @@ strip2_RamAtual = strip_RamAtual.strip('\n')
 
 def Conexao():
 
+
         # variaveis de conexao
         driver ='{ODBC Driver 18 for SQL Server}'
         server_name = 'montioll'
@@ -158,10 +159,12 @@ def Conexao():
             password=password
         )) 
 
-        cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
-
         global cursor
         cursor = cnxn.cursor()
+        
+        cnxn:pyodbc.Connection = pyodbc.connect(connection_string) 
+
+        
         print("Conectado ao banco de dados:")
 
 

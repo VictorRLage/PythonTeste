@@ -193,6 +193,8 @@ def teste():
         sql = cursor.execute('''
         INSERT INTO Leitura (Leitura, DataHora, fkTorre, fkComponente) VALUES (?, ?, ?, ?)
         ''', var_leitura2, datahora, idTorre, y)
+
+        sql()
             
 
 def InserindoLeitura():

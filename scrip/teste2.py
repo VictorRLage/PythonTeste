@@ -253,13 +253,13 @@ def InserindoLeitura():
 
 
                 # PREGAR NOME COMPONENTE
-                queryNome = ('''
-                SELECT Nome FROM Componente WHERE Componente.idComponente = ?
-                ''',y)
+                
 
                 try:
+                    crsr.execute('''
+                SELECT Nome FROM Componente WHERE Componente.idComponente = ?
+                ''',y)
                     # Executing the SQL command
-                    crsr.execute(queryNome, y)
                     print("Pegando nome do componente", y)
 
                 except pyodbc.Error as err:
@@ -275,13 +275,12 @@ def InserindoLeitura():
 def VerificarDadosMaquina(idTorre):
 
 
-    query = ('''
-    SELECT SerialID FROM Torre WHERE idTorre = ?
-    ''',idTorre)
                     
     try:
+        crsr.execute('''
+    SELECT SerialID FROM Torre WHERE idTorre = ?
+    ''',idTorre)
         # Executando comando SQL
-        crsr.execute(query, idTorre)
         print("Verificando dados da torre...")
         SerialIdBanco = crsr.fetchone()
 
@@ -300,13 +299,12 @@ def VerificarDadosMaquina(idTorre):
 
 def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
 
-    sql = ('''
+    
+    try:
+        crsr.execute('''
     UPDATE Torre  SET SerialID = ?,  SO = ?, Maquina = ?, Processador = ?, Disco = ?, VelocidadeRam = ?,  fkEmpresa = ? WHERE idTorre = ?
     ''', SerialID, OS, Maquina, Processador, Disco, RamSpeed, int_fkEmpresa, idTorre)
-
-    try:
     # Executando comando SQL
-        crsr.executemany(sql, SerialID, OS, Maquina, Processador, Disco, RamSpeed, int_fkEmpresa, idTorre)
         # Commit de mudanças no banco de dados
         cnxn.commit()
 

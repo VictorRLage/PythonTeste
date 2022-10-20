@@ -47,7 +47,6 @@ def ValidacaoLogin():
 
     records = u_email = input('Seu e-mail: ')
     records2 = u_senha = input('Sua senha: ')
-
                     
     try:
         crsr.execute('''
@@ -160,7 +159,6 @@ global strip2_RamAtual
 strip2_RamAtual = strip_RamAtual.strip('\n')
 
 
-
 def teste():
         print("Inserindo leitura no banco...")
         datahora = datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')
@@ -203,8 +201,7 @@ def teste():
             
 
 def InserindoLeitura():
-    # PREGAR fkCOMPONENTE
-            
+    # PEGAR fkCOMPONENTE
 
             try:
                 crsr.execute('''
@@ -221,7 +218,6 @@ def InserindoLeitura():
             print(fkComponente)
             vet_fkComponente = numpy.asarray(fkComponente)
             print("Componentes da maquina:", vet_fkComponente)
-
             
             for x in vet_fkComponente:
                 print(x)
@@ -251,9 +247,7 @@ def InserindoLeitura():
                 global strCodigo
                 strCodigo = convertTuple(Codigo)            
 
-
                 # PREGAR NOME COMPONENTE
-                
 
                 try:
                     crsr.execute('''
@@ -273,8 +267,6 @@ def InserindoLeitura():
                 teste()
 
 def VerificarDadosMaquina(idTorre):
-
-
                     
     try:
         crsr.execute('''
@@ -294,20 +286,17 @@ def VerificarDadosMaquina(idTorre):
     else:
         print("A torre não possui dados")
         InserirDadosMaquina(strip_SerialIdAtual, strip3_OsAtual, strip3_MaquinaAtual, strip2_ProcessadorAtual, strip2_DiscoAtual, strip2_RamAtual)
-    
 
 
 def InserirDadosMaquina(SerialID, OS, Maquina, Processador, Disco, RamSpeed):
-
     
     try:
         crsr.execute('''
     UPDATE Torre  SET SerialID = ?,  SO = ?, Maquina = ?, Processador = ?, Disco = ?, VelocidadeRam = ?,  fkEmpresa = ? WHERE idTorre = ?
     ''', SerialID, OS, Maquina, Processador, Disco, RamSpeed, int_fkEmpresa, idTorre)
     # Executando comando SQL
-        # Commit de mudanças no banco de dados
+    # Commit de mudanças no banco de dados
         crsr.commit()
-
         print("Inserindo dados...")
 
     except pyodbc.Error as err:

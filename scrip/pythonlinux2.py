@@ -2,13 +2,11 @@ import os
 import subprocess
 import datetime
 
-# Bloco verifcar bibliotecas instaladas
+# Bloco verificar bibliotecas instaladas
 verificacao_psutil_byte = subprocess.check_output('''pip list | grep 'psutil' | uniq''', shell=True)
 verificacao_psutil_str = verificacao_psutil_byte.decode('UTF-8')
 verificacao_pyodbc_byte = subprocess.check_output('''pip list | grep 'pyodbc' | uniq''', shell=True)
 verificacao_pyodbc_str = verificacao_pyodbc_byte.decode('UTF-8')
-verificacao_numpy_byte = subprocess.check_output('''pip list | grep 'numpy' | uniq''', shell=True)
-verificacao_numpy_str = verificacao_numpy_byte.decode('UTF-8')
 verificacao_numpy_byte = subprocess.check_output('''pip list | grep 'numpy' | uniq''', shell=True)
 verificacao_numpy_str = verificacao_numpy_byte.decode('UTF-8')
 verificacao_textwrap3_byte = subprocess.check_output('''pip list | grep 'textwrap3' | uniq''', shell=True)
@@ -44,5 +42,5 @@ def Bibliotecas(psutil, pyodbc, numpy, textwrap3):
             subprocess.run('pip install -U textwrap3', shell=True)
         
 
-Bibliotecas(verificacao_psutil, verificacao_pyodbc,verificacao_numpy,verificacao_textwrap3)
-exec(open('captura.py').read())
+Bibliotecas(verificacao_psutil, verificacao_pyodbc, verificacao_numpy, verificacao_textwrap3)
+exec(open('teste2.py').read())

@@ -190,7 +190,7 @@ def teste():
             var_leitura2 = var_leitura
         print(var_leitura2)
 
-        sql = cursor.executemany('''
+        sql = cursor.execute('''
         INSERT INTO Leitura (Leitura, DataHora, fkTorre, fkComponente) VALUES (?, ?, ?, ?)
         ''', var_leitura2, datahora, idTorre, y)
         print(sql.fetchall())

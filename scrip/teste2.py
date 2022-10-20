@@ -285,12 +285,13 @@ def VerificarDadosMaquina(idTorre):
                     
     try:
         # Executando comando SQL
-        print(entrou no trai)
+        print("entrou no trai")
         cursor.commit()
         print("Verificando dados da torre...")
         SerialIdBanco = cursor.fetchone()
 
     except pyodbc.Error as err:
+        print("entrou no exc")
         print("Something went wrong: {}".format(err))
 
     if SerialIdBanco[0] != '':

@@ -285,10 +285,10 @@ def VerificarDadosMaquina(idTorre):
                     
     try:
         # Executando comando SQL
+        print(entrou no trai)
         cursor.commit()
         print("Verificando dados da torre...")
         SerialIdBanco = cursor.fetchone()
-        print(SerialIdBanco)
 
     except pyodbc.Error as err:
         print("Something went wrong: {}".format(err))

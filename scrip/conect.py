@@ -48,7 +48,7 @@ SELECT * FROM Usuario WHERE Email = ? AND Senha = ?
     ''',records, records2)
 
 #executando insert 
-# crsr.execute(select_sql, records)
+crsr.execute(select_sql, records)
 
 # print 
 print(select_sql.fetchall())

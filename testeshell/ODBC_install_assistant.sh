@@ -18,7 +18,6 @@ if [ apt-cache search msodbc -eq 0 ]
 			echo "$(tput setaf 10)[Bot assistant]:$(tput setaf 7)  Ok! Você escolheu instalar o ODBC ;D"
 			echo "$(tput setaf 10)[Bot assistant]:$(tput setaf 7)  Adicionando o repositório !"
 			sleep 2
-			sudo su
             curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
             curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list > /etc/apt/sources.list.d/mssql-release.list
             sudo apt-get update

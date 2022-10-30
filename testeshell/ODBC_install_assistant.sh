@@ -6,7 +6,7 @@ echo  "$(tput setaf 10)[Bot assistant]:$(tput setaf 7)  Verificando aqui se voc�
 sleep 2
 
 apt-cache search msodbc
-if [ $? -eq 0 ]
+if [ apt-cache search msodbc -eq 0 ]
 	then
 		echo "$(tput setaf 10)[Bot assistant]:$(tput setaf 7) : Você já tem o ODBC instalado!!!"
 	else

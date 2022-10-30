@@ -1,7 +1,3 @@
-PURPLE='0;35'
-NC='\033[0m' 
-VERSAO=11
-	
 echo  "$(tput setaf 10)[Bot assistant]:$(tput setaf 7) Olá sou seu assistente de instalação irei acompanhar os processos e te notificar dos passos a seguir !"
 echo "$(tput setaf 10)[Bot assistant]:$(tput setaf 7) Vamos atualizar seu sistema antes verificar se temos o ODBC instalado."
 sudo apt update && sudo apt upgrade -y
